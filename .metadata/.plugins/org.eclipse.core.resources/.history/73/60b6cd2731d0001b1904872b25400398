@@ -1,0 +1,155 @@
+package com.exercise.ex.user.controller;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.exercise.ex.user.domain.LoginDTO;
+import com.exercise.ex.user.domain.MemberDTO;
+import com.exercise.ex.user.service.MemberService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+@Controller
+public class LoginController {
+
+	 private static final org.slf4j.Logger logger = LoggerFactory.getLogger(LoginController.class);
+
+	    
+	    @Inject
+	    private MemberService service;
+	    
+	    /**
+	     * login page
+	     * @param model
+	     * @return
+	     * @throws Exception
+	     */
+	    @RequestMapping(value = "/login", method = RequestMethod.GET)
+	    public String login(LoginDTO loginDTO, Model model) throws Exception{
+	 
+	        logger.info("login...");
+	        model.addAttribute("user", loginDTO);
+	        return "login";
+	    }
+	    
+	    /**
+	     * login processing
+	     * @param model
+	     * @return 
+	     * @return
+	     * @throws Exception
+	     */
+	    @RequestMapping(value = "/loginPost", method = RequestMethod.POST)
+	    @ResponseBody
+
+	    public String loginPOST(@RequestBody LoginDTO loginDTO, HttpSession httpSession, Model model) throws Exception{
+	 
+	        logger.info("login processing...");
+
+	        MemberDTO memberDTO = service.login(loginDTO);
+	        Map<String, Object> map = new HashMap<String, Object>();
+	        
+	        if(memberDTO == null || !(memberDTO.getPw().equals(loginDTO.getPw())) || !(memberDTO.getId().equals(loginDTO.getId()))){
+		        model.addAttribute("user", loginDTO);
+		        model.addAttribute("msg", "FAIL");
+		        map.put("user", loginDTO);
+		        map.put("msg", "FAIL");
+		        ObjectMapper mapper = new ObjectMapper();
+		        String json = mapper.writeValueAsString(map);
+
+		        return json;
+	        }
+	        
+	        else {
+		        model.addAttribute("msg", "SUCCESS");
+		        model.addAttribute("login", memberDTO);
+		        map.put("login", memberDTO);
+		        map.put("msg", "SUCCESS");
+		        ObjectMapper mapper = new ObjectMapper();
+		        String json = mapper.writeValueAsString(map);
+		        return json;
+	        }
+	    }
+	    
+	    // 로그아웃 처리
+	    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+	    public String logout(HttpServletRequest request,
+	                         HttpServletResponse response,
+	                         HttpSession httpSession) throws Exception {
+	    	
+	        logger.info("logout processing...");
+
+	        Object object = httpSession.getAttribute("login");
+	        if (object != null) {
+	            MemberDTO memberDTO = (MemberDTO) object;
+	            httpSession.removeAttribute("login");
+	            httpSession.invalidate();
+
+	            }
+
+	        return "logout";
+	    }
+	    
+	    
+	    // 로그인 성공
+	    @RequestMapping(value = "/loginOk", method = RequestMethod.GET)
+	    public String loginOk() throws Exception{
+	 
+	        logger.info("loginOk...");
+	        return "loginOk";
+	    }
+	    
+	    
+	    /**
+	     * login 프로토타입
+	     * @param model
+	     * @return
+	     * @throws Exception
+	     */
+	    @RequestMapping(value = "/login2", method = RequestMethod.GET)
+	    public String login2(LoginDTO loginDTO, Model model) throws Exception{
+	 
+	        logger.info("login2...");
+	        model.addAttribute("user", loginDTO);
+	        return "login2";
+	    }
+	    
+	    /**
+	     * login processing 프로토타입
+	     * @param model
+	     * @return 
+	     * @throws Exception
+	     */
+	    @RequestMapping(value = "/loginPost2", method = RequestMethod.POST)
+	    public String loginPOST2(LoginDTO loginDTO, HttpSession httpSession, Model model) throws Exception{
+	 
+	        logger.info("login2 processing...");
+
+	        MemberDTO memberDTO = service.login(loginDTO);
+	        
+	        if(memberDTO == null || !(memberDTO.getPw().equals(loginDTO.getPw())) || !(memberDTO.getId().equals(loginDTO.getId()))){
+		        model.addAttribute("user", loginDTO);
+		        model.addAttribute("msg", "FAIL");
+		        return "login2";
+	        }
+	        
+	        else {
+		        model.addAttribute("msg", "SUCCESS");
+		        model.addAttribute("login", memberDTO);
+		        return "index";
+	        }
+	    }
+
+}

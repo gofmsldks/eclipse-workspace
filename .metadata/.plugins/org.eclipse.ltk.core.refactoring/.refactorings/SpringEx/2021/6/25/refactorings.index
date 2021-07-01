@@ -1,0 +1,38 @@
+1623623473884	Move file
+1623623495490	Delete element
+1623624501952	Delete element
+1623624519098	Delete element
+1623624970225	Rename resource 'domin'
+1623626594953	Delete element
+1623631522680	Rename resource 'uuser.sql'
+1623648541764	Rename type 'MemverDTO'
+1623648570360	Delete element
+1623650378438	Rename type 'MemverDTOImpl'
+1623650386757	Delete element
+1623650419179	Rename type 'MemberDTOImpl'
+1623718476555	Move 'HomeController.java' to 'controller'
+1623731137903	Rename resource 'MemberDTO.java'
+1623807522239	Rename type 'loginDTO'
+1623821924863	Delete element
+1623821929232	Delete element
+1623827149670	Rename resource 'regoster.jsp'
+1623829446861	Rename type 'LoginConroller'
+1623829881198	Delete element
+1623829971902	Rename package 'servlet'
+1623833532695	Rename resource 'LoginOk.jsp'
+1623833768221	Move 'servlet' to 'user'
+1623833785909	Delete element
+1623891207771	Move file
+1623891885608	Move 'pom.xml' to 'resources'
+1623891914354	Move 'pom.xml' to 'src'
+1623891931120	Move 'pom.xml' to 'SpringEx'
+1623911432442	Rename resource 'servlet'
+1623913140752	Delete element
+1623913320536	Rename resource 'loginCheck.java'
+1623917211060	Rename resource 'loginpost.jsp'
+1623918106168	Rename resource 'loginPost.jsp'
+1623918312541	Rename resource 'loginFail.jsp'
+1623920737050	Delete element
+1623921850917	Delete element
+1623922568469	Delete element
+1623923399917	Rename resource 'logOut.jsp'

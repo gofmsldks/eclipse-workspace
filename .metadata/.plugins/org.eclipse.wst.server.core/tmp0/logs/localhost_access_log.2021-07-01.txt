@@ -1,0 +1,11 @@
+127.0.0.1 - - [01/Jul/2021:09:39:57 +0900] "GET / HTTP/1.1" 200 5978
+127.0.0.1 - - [01/Jul/2021:09:40:26 +0900] "GET /register HTTP/1.1" 200 3555
+127.0.0.1 - - [01/Jul/2021:09:40:26 +0900] "GET /resources/css/sb-admin-2.min.css HTTP/1.1" 304 -
+127.0.0.1 - - [01/Jul/2021:09:40:26 +0900] "GET /resources/vendor/fontawesome-free/css/all.min.css HTTP/1.1" 304 -
+127.0.0.1 - - [01/Jul/2021:09:40:26 +0900] "GET /resources/vendor/jquery/jquery.min.js HTTP/1.1" 304 -
+127.0.0.1 - - [01/Jul/2021:09:40:26 +0900] "GET /resources/vendor/bootstrap/js/bootstrap.bundle.min.js HTTP/1.1" 304 -
+127.0.0.1 - - [01/Jul/2021:09:40:26 +0900] "GET /resources/js/sb-admin-2.min.js HTTP/1.1" 304 -
+127.0.0.1 - - [01/Jul/2021:09:40:26 +0900] "GET /resources/vendor/jquery-easing/jquery.easing.min.js HTTP/1.1" 304 -
+127.0.0.1 - - [01/Jul/2021:09:40:26 +0900] "GET /favicon.ico HTTP/1.1" 404 721
+127.0.0.1 - - [01/Jul/2021:09:40:28 +0900] "GET /login HTTP/1.1" 200 5978
+127.0.0.1 - - [01/Jul/2021:09:40:28 +0900] "GET /resources/js/sb-admin-2.js HTTP/1.1" 304 -

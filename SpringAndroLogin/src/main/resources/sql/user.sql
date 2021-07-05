@@ -35,7 +35,7 @@ INSERT INTO tbl_user (user_id, user_pw, user_name, user_email) VALUES ('user09',
 -- test를 위한 login 테이블
 CREATE TABLE `test`(  
       `id` VARCHAR(10) NOT NULL,
-      `pw` VARCHAR(10),
+      `pw` VARCHAR(100),
       `name` VARCHAR(10),
     PRIMARY KEY (`id`)
 );

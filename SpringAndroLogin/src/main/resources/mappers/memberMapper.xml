@@ -6,7 +6,7 @@
 <mapper namespace="com.exercise.ex.mappers.memberMapper">
 
 	<select id="selectMember" resultType="MemberDTO">
-		SELECT id, pw , name
+		SELECT id, name, email, position, age, phoneNumber
 		FROM test
 	</select>
 

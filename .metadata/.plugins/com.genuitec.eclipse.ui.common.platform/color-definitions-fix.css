@@ -2305,6 +2305,8 @@ IEclipsePreferences#org-eclipse-ui-workbench {
 		'org.springframework.ide.eclipse.boot.dash.TextDecorColor=144,238,144'
 		'org.springframework.tooling.ls.eclipse.commons.STS4BootMarkerIndicationColor=54,81,25'
 		'piBorder=0,254,254'
+		'preference.decoration.merged_revision_foreground_color=99,111,121'
+		'preference.decoration.not_related_nodes_foreground_color=99,111,121'
 		'tagAttributeName=255,0,255'
 		'tagAttributeValue=212,0,255'
 		'tagBorder=0,254,254'

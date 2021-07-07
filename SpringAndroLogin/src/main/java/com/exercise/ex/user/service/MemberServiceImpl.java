@@ -1,6 +1,6 @@
 package com.exercise.ex.user.service;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 
@@ -18,9 +18,9 @@ public class MemberServiceImpl implements MemberService {
     private MemberDAO dao;
     
     @Override
-    public List<MemberDTO> selectMember() throws Exception {
+    public ArrayList<MemberDTO> selectMember() throws Exception {
  
-        return dao.selectMember();
+        return (ArrayList<MemberDTO>)dao.selectMember();
     }
 
 	@Override

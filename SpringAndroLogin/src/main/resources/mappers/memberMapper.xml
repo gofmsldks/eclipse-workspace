@@ -6,7 +6,12 @@
 <mapper namespace="com.exercise.ex.mappers.memberMapper">
 
 	<select id="selectMember" resultType="MemberDTO">
-		SELECT id, name, email, position, age, phoneNumber
+		SELECT id
+		, name
+		, email
+		, position
+		, age
+		, phoneNumber
 		FROM test
 	</select>
 
@@ -18,11 +23,11 @@
 
 	<insert id="register">
 		INSERT INTO test (
-		  id
+		id
 		, pw
 		, name
 		) VALUES (
-		  #{id}
+		#{id}
 		, #{pw}
 		, #{name}
 		)
@@ -31,13 +36,15 @@
 	<select id="getUserPw" resultType="string">
 		SELECT pw
 		FROM test
-		WHERE id = #{id}
+		WHERE id =
+		#{id}
 	</select>
 
 	<select id="getUserId" resultType="string">
 		SELECT id
 		FROM test
-		WHERE id = #{id}
+		WHERE id =
+		#{id}
 	</select>
 
 </mapper>

@@ -37,4 +37,10 @@
 			<item value="register"/>
 		</list>
 	</section>
+	<section name="ImportExportAction">
+		<item key="ImportExportPage.STORE_SELECTED_IMPORT_WIZARD_ID" value="org.eclipse.team.svn.ui.wizard.ImportFromSVNWizard"/>
+		<list key="ImportExportPage.STORE_EXPANDED_IMPORT_CATEGORIES">
+			<item value="org.eclipse.team.svn.ui.repository"/>
+		</list>
+	</section>
 </section>

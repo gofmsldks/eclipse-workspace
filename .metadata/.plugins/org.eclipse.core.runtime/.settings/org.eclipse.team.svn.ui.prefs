@@ -1,8 +1,12 @@
 eclipse.preferences.version=1
 firstStartup=false
-history.repositoryURL=aHR0cHM6Ly8xMC4xLjIuMTU6ODQ0My9zdm4vU3ByaW5nQW5kcm9Mb2dpbi9TcHJpbmdBbmRyb0xvZ2lu
+history.comment=U2hhcmUgcHJvamVjdCAiU3ByaW5nQW5kcm9Mb2dpbiIgaW50byAiaHR0cHM6Ly8xMC4xLjIuMTU6ODQ0My9zdm4vU3ByaW5nQW5kcm9Mb2dpbi9TcHJpbmdBbmRyb0xvZ2luIg\=\=
+history.repositoryURL=aHR0cHM6Ly8xMC4xLjIuMTU6ODQ0My9zdm4vU3ByaW5nQW5kcm9Mb2dpbi9TcHJpbmdBbmRyb0xvZ2lu;aHR0cDovLzEwLjEuMi4xNTo4NDQzL3N2bi9TcHJpbmdBbmRyb0xvZ2luL1NwcmluZ0FuZHJvTG9naW4\=;aHR0cHM6Ly8xMC4xLjIuMTU6ODQ0My9zdm4vU3ByaW5nQW5kcm9Mb2dpbi9TcHJpbmdBbmRyb0xvZ2luLw\=\=
 history.repositoryUser=a2ltaHl1bmd3b24\=
 history.selectCheckoutUrl=aHR0cHM6Ly8xMC4xLjIuMTU6ODQ0My9zdm4vU3ByaW5nQW5kcm9Mb2dpbi9TcHJpbmdBbmRyb0xvZ2lu
+history.selectProjectNamePage=aHR0cHM6Ly8xMC4xLjIuMTU6ODQ0My9zdm4vU3ByaW5nQW5kcm9Mb2dpbi9TcHJpbmdBbmRyb0xvZ2luL1NwcmluZ0FuZHJvTG9naW4\=
+org.eclipse.team.svn.ui.lock.LockResourcesPanel.height=110
+org.eclipse.team.svn.ui.lock.LockResourcesPanel.width=470
 org.eclipse.team.svn.ui.panel.ListSelectionPanel.height=204
 org.eclipse.team.svn.ui.panel.ListSelectionPanel.width=470
 org.eclipse.team.svn.ui.panel.callback.AskTrustSSLServerPanel.height=368
@@ -11,6 +15,8 @@ org.eclipse.team.svn.ui.panel.common.RepositoryTreePanel.height=203
 org.eclipse.team.svn.ui.panel.common.RepositoryTreePanel.width=470
 org.eclipse.team.svn.ui.panel.local.AddRepositoryPanel.height=127
 org.eclipse.team.svn.ui.panel.local.AddRepositoryPanel.width=470
+org.eclipse.team.svn.ui.panel.remote.DiscardLocationFailurePanel.height=194
+org.eclipse.team.svn.ui.panel.remote.DiscardLocationFailurePanel.width=470
 org.eclipse.team.svn.ui.panel.reporting.ErrorCancelPanel.height=141
 org.eclipse.team.svn.ui.panel.reporting.ErrorCancelPanel.width=640
 preference.repository.repositoryBrowser=false

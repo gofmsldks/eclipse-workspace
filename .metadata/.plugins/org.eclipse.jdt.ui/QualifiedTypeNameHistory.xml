@@ -10,4 +10,7 @@
     <fullyQualifiedTypeName name="java.awt.PageAttributes.MediaType"/>
     <fullyQualifiedTypeName name="java.awt.List"/>
     <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.Properties"/>
+    <fullyQualifiedTypeName name="java.net.URL"/>
+    <fullyQualifiedTypeName name="java.security.cert.Certificate"/>
 </qualifiedTypeNameHistroy>

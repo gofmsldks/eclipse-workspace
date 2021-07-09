@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
 externalMigrateFromAuthorizationDatabase/isMigrated=true
 migrateFromAuthorizationDatabase/isMigrated=true
+repositories/b0e4746fd2df001b1f2886c912f042aa=b0e4746fd2df001b1f2886c912f042aa;https\://10.1.2.15\:8443/svn/SpringAndroLogin/SpringAndroLogin;https\://10.1.2.15\:8443/svn/SpringAndroLogin/SpringAndroLogin;branches;tags;trunk;true;;;;false;;;0
 synch_info/contigous=true

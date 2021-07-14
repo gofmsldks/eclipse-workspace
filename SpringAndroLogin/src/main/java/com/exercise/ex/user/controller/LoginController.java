@@ -40,6 +40,8 @@ public class LoginController {
 	    public String login() throws Exception{
 	 
 	        logger.info("login page...");
+	        
+
 	        return "login";
 	    }
 	    

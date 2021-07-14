@@ -1,6 +1,7 @@
 package com.exercise.ex.user.service;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.exercise.ex.user.dao.MemberDAO;
 import com.exercise.ex.user.domain.LoginDTO;
 import com.exercise.ex.user.domain.MemberDTO;
+import com.exercise.ex.user.domain.NaverLoginDTO;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -45,6 +47,18 @@ public class MemberServiceImpl implements MemberService {
 		else{
 			return false;
 		}
+	}
+	
+	@Override
+	public Map<String, Object> naverConnectionCheck(NaverLoginDTO naverLoginDTO) throws Exception {
+		Map<String, Object> naverConInfo = dao.getNaverConn(naverLoginDTO);
+		return naverConInfo;
+	}
+
+	@Override
+	public void setNaverConnection(NaverLoginDTO naverLoginDTO) throws Exception {
+
+		dao.setNaverConnection(naverLoginDTO);
 	}
  
 }

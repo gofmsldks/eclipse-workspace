@@ -46,11 +46,10 @@
             <div class="col-xl-10 col-lg-12 col-md-9">
 
                 <div class="card o-hidden border-0 shadow-lg my-5">
-                    <div class="card-body p-0">
+                    <div class="card-body p-5">
                         <!-- Nested Row within Card Body -->
-                        <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                            <div class="col-lg-6">
+                        <div class="text-center">
+                            <div class="text-center">
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">로그인 화면입니다.</h1>
@@ -80,7 +79,11 @@
      
      									<br>
                                         <hr>
- 
+                                        
+										 <!-- 네이버 로그인 창으로 이동 -->
+										<div id="naver_id_login" style="text-align:center"><a href="${url}">
+										<img width="223" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/></a></div>
+
                                     </div>
 
                                     <div class="text-center">

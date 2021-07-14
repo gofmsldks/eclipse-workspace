@@ -1,9 +1,11 @@
 package com.exercise.ex.user.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.exercise.ex.user.domain.LoginDTO;
 import com.exercise.ex.user.domain.MemberDTO;
+import com.exercise.ex.user.domain.NaverLoginDTO;
 
 public interface MemberDAO {
 	
@@ -21,6 +23,13 @@ public interface MemberDAO {
     
     // 아이디 찾기 처리
     public String getUserID(String name) throws Exception;
+    
+    // 네이버 아이디 연동 유무
+    public Map<String, Object> getNaverConn(NaverLoginDTO naverLoginDTO) throws Exception;
+
+	public void setNaverConnection(NaverLoginDTO naverLoginDTO) throws Exception;
+
+
 }
 
 

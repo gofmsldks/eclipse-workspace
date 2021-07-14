@@ -1,6 +1,7 @@
 package com.exercise.ex.user.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.exercise.ex.user.domain.LoginDTO;
 import com.exercise.ex.user.domain.MemberDTO;
+import com.exercise.ex.user.domain.NaverLoginDTO;
 
 
 @Repository
@@ -58,6 +60,22 @@ public class MemberDAOImpl implements MemberDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(Namespace + ".getUserId", id);
 	}
+
+	@Override
+	public Map<String, Object> getNaverConn(NaverLoginDTO naverLoginDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(Namespace + ".getNaverConn", naverLoginDTO);
+	}
+
+	@Override
+	public void setNaverConnection(NaverLoginDTO naverLoginDTO) throws Exception {
+		// TODO Auto-generated method stub
+		 sqlSession.update(Namespace + ".setNaverConnection", naverLoginDTO);
+
+	}
+
+
+
 
 
 

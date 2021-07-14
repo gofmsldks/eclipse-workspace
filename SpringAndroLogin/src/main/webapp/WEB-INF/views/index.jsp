@@ -33,7 +33,7 @@
 	<% if (memberId == null){ %>
 			<script>
 			alert("세션 만료 다시 로그인 하세요.");
- 			document.location.href="/login";
+ 			document.location.href="/";
  			</script>
 	<% } %>
     

@@ -23,13 +23,23 @@
 
 	<insert id="register">
 		INSERT INTO test (
-		id
-		, pw
-		, name
+		id,
+		pw,
+		name, 
+		email, 
+		position, 
+		age, 
+		phoneNumber,
+		naver_login
 		) VALUES (
 		#{id}
 		, #{pw}
 		, #{name}
+		, #{email}
+		, #{position}
+		, #{age}
+		, #{phoneNumber}
+		, #{naver_login}
 		)
 	</insert>
 
@@ -46,6 +56,26 @@
 		WHERE id =
 		#{id}
 	</select>
+	
+	<select id = "getNaverConn" resultType = "Map">
+	
+	 	SELECT email,
+	 	name,
+	 	naver_login
+	 	FROM test
+	 	WHERE email = 
+	 	#{email}
+	 	
+	</select>
+	
+	<update id = "setNaverConnection">
+		
+		UPDATE test
+		SET naver_login = #{id}
+		WHERE email = #{email}
+	
+	</update>
+	
 
 </mapper>
 

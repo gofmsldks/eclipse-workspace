@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -26,9 +27,14 @@ public class RegistrationController {
 	
     // 회원가입 페이지
     @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String register() throws Exception {
+    public String register(Model model) throws Exception {
     	
         logger.info("register page...");
+		model.addAttribute("email","");
+		model.addAttribute("naver_id","");
+		model.addAttribute("phone","");
+		model.addAttribute("name","");
+		model.addAttribute("age","");
 
         return "register";
     }
@@ -43,7 +49,7 @@ public class RegistrationController {
         memberDTO.setPw(hashedPw);
         service.register(memberDTO);
         redirectAttributes.addFlashAttribute("msg", "REGISTERED");
-        return "redirect:/login";
+        return "redirect:/";
     }
 	
 }

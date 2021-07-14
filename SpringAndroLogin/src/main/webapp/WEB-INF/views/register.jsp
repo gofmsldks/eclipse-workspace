@@ -23,7 +23,20 @@
 
     <!-- Custom styles for this template-->
     <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
+    
+	<%
+		String name = (String)request.getAttribute("name");
+		String email = (String)request.getAttribute("email");
+		String age = (String)request.getAttribute("age");
+		String phone = (String)request.getAttribute("phone");
+		String naver_id = (String)request.getAttribute("naver_id");
+		System.out.print(name);
+		System.out.print(email);
+		System.out.print(age);
+		System.out.print(phone);
+		System.out.print(naver_id);
 
+	%>
 </head>
 
 <body class="bg-gradient-primary">
@@ -31,38 +44,113 @@
     <div class="container">
 
         <div class="card o-hidden border-0 shadow-lg my-5">
-            <div class="card-body p-0">
+            <div class="card-body p-5">
                 <!-- Nested Row within Card Body -->
-                <div class="row">
-                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
-                    <div class="col-lg-7">
+                <div>
+                   
+                    <div class="text-center">
                         <div class="p-5">
+                        
+                        <% if((!name.equals("")) && (!email.equals("")) && (!phone.equals("")) && (!age.equals(""))) { %>
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Connect with your Email!</h1>
+                            </div>
+                          <% }else { %>
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
-                            </div>
+                            </div>                          	
+                          <% }%>
+                          
+                            <!--  ------------------edit!--------------------- -->
                             <form class="user" action = "/register" method = "POST">
-                                <div class="form-group row">
-                                    <div class="col-sm">
-                                        <input type="text" class="form-control form-control-user" id="user_name" name = "name" placeholder="Enter Name">
-                                    </div>
-                                </div>
+                            
+                            <% if((!name.equals("")) && (!email.equals("")) && (!phone.equals("")) && (!age.equals(""))) { %>
+	                                <div class="form-group row">
+	                                    <div class="col-sm">
+	                                        <input type="hidden" class="form-control form-control-user" id="user_name" name = "name"  value = "${name}">
+	                                    </div>
+	                                </div>
+	                                <div class="form-group row">
+	                                    <div class="col-sm">
+	                                        <input type="hidden" class="form-control form-control-user" id="user_email" name = "email" value = "${email}">
+	                                    </div>
+	                                </div>
+	
+	                                <div class="form-group row">
+	                                    <div class="col-sm">
+	                                        <input type="hidden" class="form-control form-control-user" id="user_age" name = "age" value = "${age}">
+	                                    </div>
+	                                </div>
+	                                
+	                                <div class="form-group row">
+	                                    <div class="col-sm">
+	                                        <input type="hidden" class="form-control form-control-user" id="user_phone" name = "phoneNumber" value = "${phone}">
+	                                    </div>
+	                                </div>
+	                                
+	                              	<div class="form-group row">
+	                                    <div class="col-sm">
+	                                        <input type="hidden" class="form-control form-control-user" id="user_naverID" name = "naver_id" value = "${naver_id}">
+	                                    </div>
+	                                </div>
+                                
+                              <% } else{ %>
+	                                <div class="form-group row">
+	                                    <div class="col-sm">
+	                                        <input type="text" class="form-control form-control-user" id="user_name" name = "name" placeholder="Enter Name">
+	                                    </div>
+	                                </div>
+	                                <div class="form-group row">
+	                                    <div class="col-sm">
+	                                        <input type="text" class="form-control form-control-user" id="user_email" name = "email" placeholder="Enter email">
+	                                    </div>
+	                                </div>
+	
+	                                <div class="form-group row">
+	                                    <div class="col-sm">
+	                                        <input type="text" class="form-control form-control-user" id="user_age" name = "age" placeholder="Enter age">
+	                                    </div>
+	                                </div>
+	                                <div class="form-group row">
+	                                    <div class="col-sm">
+	                                        <input type="text" class="form-control form-control-user" id="user_phone" name = "phoneNumber" placeholder="Enter phoneNumber">
+	                                    </div>
+	                                </div>
+                               <% } %>
+                                
+                                
+                                
+                                
+                                
                                 <div class="form-group row">
                                     <div class="col-sm">
                                     <input type="text" class="form-control form-control-user" id="user_id" name = "id" placeholder="Enter ID">
                                 	</div>
                                 </div>
+                                
                                 <div class="form-group row">
                                     <div class="col-sm">
                                         <input type="password" class="form-control form-control-user"
                                             id="user_pw" name = "pw" placeholder="Enter Password">
                                     </div>
                                 </div>
+                                
+                                <div class="form-group row">
+                                    <div class="col-sm">
+                                        <input type="text" class="form-control form-control-user" id="user_position" name = "position" placeholder="Enter position">
+                                    </div>
+                                </div>
+                                
                                 <button type = "submit" class="btn btn-primary btn-user btn-block"> 회원가입 </button>
                                 <hr>
 
                             </form> 
+                            
+                           <!--  ------------------edit end!--------------------- -->
+                            
+                            
                             <div class="text-center">
-                                <a class="small" href="/login">Already have an account? Login!</a>
+                                <a class="small" href="/">Already have an account? Login!</a>
                             </div>
                         </div>
                     </div>

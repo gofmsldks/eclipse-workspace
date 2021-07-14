@@ -7,8 +7,9 @@ public class MemberDTO {
 	private String name;
 	private String email;
 	private String position;
-	private int age;
+	private String age;
 	private String phoneNumber;
+	private String naver_id = null;
 
 
 	public String getId() {
@@ -51,11 +52,11 @@ public class MemberDTO {
 		this.position = position;
 	}
 
-	public int getAge() {
+	public String getAge() {
 		return age;
 	}
 
-	public void setAge(int age) {
+	public void setAge(String age) {
 		this.age = age;
 	}
 
@@ -65,6 +66,14 @@ public class MemberDTO {
 
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+
+	public String getNaver_id() {
+		return naver_id;
+	}
+
+	public void setNaver_id(String naver_id) {
+		this.naver_id = naver_id;
 	}
 
 }

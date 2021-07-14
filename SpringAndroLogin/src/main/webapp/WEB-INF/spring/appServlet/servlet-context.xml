@@ -37,7 +37,8 @@
 	
 	<beans:bean id = "loginCheck" class = "com.exercise.ex.user.interceptor.LoginCheck"/>
 	
-	
+
+
 	<mvc:interceptors>
     	
     	<mvc:interceptor>
@@ -68,4 +69,7 @@
 <!--  BCrypt 설정 -->	
  <beans:bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />  
 
+
 </beans:beans>
+
+

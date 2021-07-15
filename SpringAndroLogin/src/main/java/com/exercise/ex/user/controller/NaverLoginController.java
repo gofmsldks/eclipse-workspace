@@ -57,23 +57,30 @@ public class NaverLoginController {
 		oauthToken = naverLoginBO.getAccessToken(session, code, state);
 		//1. 로그인 사용자 정보를 읽어온다.
 		apiResult = naverLoginBO.getUserProfile(oauthToken); //String형식의 json데이터
-		ObjectMapper objectMapper =new ObjectMapper();
-		Map<String, Object> apiJson = (Map<String, Object>) objectMapper.readValue(apiResult, Map.class).get("response");
 		
-		NaverLoginDTO naverLoginDTO = new NaverLoginDTO();
-		naverLoginDTO.setEmail((String)apiJson.get("email"));
-		naverLoginDTO.setName((String)apiJson.get("name"));
-		naverLoginDTO.setName((String)apiJson.get("id"));
-		naverLoginDTO.setApiJson(apiJson);
 		
-		Map<String, Object> naverConnectionCheck = service.naverConnectionCheck(naverLoginDTO);
-        logger.info("결과 값..." + apiJson);
 
 		/** apiResult json 구조
 		{"resultcode":"00",
 		"message":"success",
 		"response":{"id":"33666449","nickname":"shinn****","age":"20-29","gender":"M","email":"sh@naver.com","name":"\uc2e0\ubc94\ud638"}}
 		 **/
+		
+		/**
+		 * 네이버로 부터 전달 받은 회원 정보 Json 데이터 파싱
+		 */
+		
+		ObjectMapper objectMapper =new ObjectMapper();
+		Map<String, Object> apiJson = (Map<String, Object>) objectMapper.readValue(apiResult, Map.class).get("response");
+		
+		NaverLoginDTO naverLoginDTO = new NaverLoginDTO();
+		naverLoginDTO.setEmail((String)apiJson.get("email"));
+		naverLoginDTO.setName((String)apiJson.get("name"));
+		naverLoginDTO.setNaver_id((String)apiJson.get("id"));
+		naverLoginDTO.setApiJson(apiJson);
+		
+		Map<String, Object> naverConnectionCheck = service.naverConnectionCheck(naverLoginDTO);
+        logger.info("결과 값..." + apiJson);
         
         if(naverConnectionCheck == null) { //일치하는 이메일 없으면 가입
             logger.info("일치하는 이메일 없음 가입화면으로 넘어감...");

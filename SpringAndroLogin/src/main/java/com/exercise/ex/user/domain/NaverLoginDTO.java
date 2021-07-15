@@ -5,7 +5,7 @@ import java.util.Map;
 public class NaverLoginDTO {
 	private String name;
 	private String email;
-	private String id;
+	private String naver_id;
 	private Map<String, Object> apiJson;
 	
 	public String getEmail() {
@@ -32,12 +32,12 @@ public class NaverLoginDTO {
 		this.apiJson = apiJson;
 	}
 	
-	public String getId() {
-		return id;
+	public String getNaver_id() {
+		return naver_id;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setNaver_id(String naver_id) {
+		this.naver_id = naver_id;
 	}
 
 }

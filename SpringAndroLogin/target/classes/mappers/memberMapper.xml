@@ -39,7 +39,7 @@
 		, #{position}
 		, #{age}
 		, #{phoneNumber}
-		, #{naver_login}
+		, #{naver_id}
 		)
 	</insert>
 
@@ -71,7 +71,7 @@
 	<update id = "setNaverConnection">
 		
 		UPDATE test
-		SET naver_login = #{id}
+		SET naver_login = #{naver_id}
 		WHERE email = #{email}
 	
 	</update>

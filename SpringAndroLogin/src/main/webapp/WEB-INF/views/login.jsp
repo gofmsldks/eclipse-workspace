@@ -22,7 +22,11 @@
     <!-- Custom styles for this template-->
     <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
     
+    <!--  KaKao 로그인 API SDK 삽입-->
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     
+    
+    <!-- 세션 불러오기  -->
 	<%
 	
 		session = request.getSession();
@@ -37,6 +41,30 @@
 <% if (memberId == null){ %>
 
 <body class="bg-gradient-primary">
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="resources/vendor/jquery/jquery.min.js"></script>
+    <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="resources/js/sb-admin-2.js"></script>
+    
+    
+	<!--  카카오 로그인시 회원 가입이 필요한 경우 사용자 정보를 form 형식으로 전달해서 회원 가입 페이지로 이동시킨다.(hidden으로 구현) -->
+	<form name="kakaoForm" id="kakaoForm" method = "POST" action="/setKakaoInfo">
+	<input type="hidden" name="email" id="kakaoEmail" />
+	<input type="hidden" name="id" id="kakaoId" />
+	<input type="hidden" name="name" id="kakaoNickName" />
+	<!--  카카오 로그인 시 나이와 폰번호는 현재로선 불러 올 수 없음 (카카오 자체에서 검수 필요) -->
+	<input type="hidden" name="age" id="kakaoBirthyear" value="" />
+	<input type="hidden" name="phone" id="kakaoPhone_number" value="" />
+	<input type="hidden" name="flag" id="flag" value="kakao" />
+	</form>
+
 
     <div class="container">
 
@@ -81,8 +109,19 @@
                                         <hr>
                                         
 										 <!-- 네이버 로그인 창으로 이동 -->
-										<div id="naver_id_login" style="text-align:center"><a href="${url}">
-										<img width="223" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/></a></div>
+										<div id="naver_id_login" style="text-align:center">
+											<a href="${url}">
+												<img width="223" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/>
+											</a>
+										</div>
+										
+										
+										<!-- 카카오 로그인 창으로 이동 -->
+										<div id="kakao_id_login" style="text-align:center">
+											<a href="javascript:kakaoLogin()">
+												카카오 아이디로 로그인
+											</a>
+										</div>
 
                                     </div>
 
@@ -161,6 +200,8 @@
 }
 	
 	 </script>
+	 
+	 
 	<script type="text/javascript">
 	if ("${msg}" == "REGISTERED"){
 		alert('회원가입 완료 로그인 해주세요');
@@ -171,17 +212,76 @@
 	}
 	
 	</script>
-
-    <!-- Bootstrap core JavaScript-->
-    <script src="resources/vendor/jquery/jquery.min.js"></script>
-    <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="resources/vendor/jquery-easing/jquery.easing.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="resources/js/sb-admin-2.js"></script>
+	
+	
+	<!--  Kakao 로그인 api 불러오기 -->
+	<script>
+	$(document).ready(function(){
+		Kakao.init('c67948042abe53729decb54f94ed88b5');
+		console.log("카카오: " + Kakao.isInitialized() );
+	});
+	
+	</script>
+	
+	<script>
+	
+		function kakaoLogin() {
+			Kakao.Auth.login({
+				success: function (authObj) {
+				Kakao.API.request({
+					url: '/v2/user/me',
+					success: function (response) {
+						console.log(authObj.access_token);
+						console.log(response)
+						kakaoLoginCallback(response);
+						
+					},
+					fail: function (error) {
+						console.log(error);
+					},
+				})
+			},
+				fail: function (error) {
+					console.log(error);
+				},
+			})
+		}
+	
+	</script>
+	
+	
+	<script>
+	
+	
+		function kakaoLoginCallback(response){
+			var data = {'email':response.kakao_account.email, 'id':response.id, 'nickName': response.kakao_account.profile.nickname};
+			$.ajax({
+				type : 'POST',
+				url : '/kakaoCallback',
+				data : data,
+				dataType : 'json',
+				success : function(res){
+					console.log(res);
+					if(res.JavaData == "YES"){
+						alert("로그인되었습니다.");
+						location.href = '/index'
+					}else if(res.JavaData == "register"){
+						$("#kakaoEmail").val(response.kakao_account.email);
+						$("#kakaoId").val(response.kakao_account.id);
+						$("#kakaoNickName").val(response.kakao_account.profile.nickname);
+						$("#kakaoForm").submit();
+					}else{
+						alert("로그인에 실패했습니다");
+					}
+					
+				},
+				error: function(xhr, status, error){
+					alert("로그인에 실패했습니다."+error);
+				}
+			});
+		}
+			
+	</script>
 
 </body>
 

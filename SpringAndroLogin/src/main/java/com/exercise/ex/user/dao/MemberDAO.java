@@ -3,6 +3,7 @@ package com.exercise.ex.user.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.exercise.ex.user.domain.KakaoLoginDTO;
 import com.exercise.ex.user.domain.LoginDTO;
 import com.exercise.ex.user.domain.MemberDTO;
 import com.exercise.ex.user.domain.NaverLoginDTO;
@@ -28,6 +29,10 @@ public interface MemberDAO {
     public Map<String, Object> getNaverConn(NaverLoginDTO naverLoginDTO) throws Exception;
 
 	public void setNaverConnection(NaverLoginDTO naverLoginDTO) throws Exception;
+
+	public Map<String, Object> getKakaoConn(KakaoLoginDTO kakaoLoginDTO) throws Exception;
+
+	public void setKakaoConnection(KakaoLoginDTO kakaoLoginDTO) throws Exception;
 
 
 }

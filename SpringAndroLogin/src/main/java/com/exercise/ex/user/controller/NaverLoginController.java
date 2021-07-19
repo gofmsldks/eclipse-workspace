@@ -90,6 +90,8 @@ public class NaverLoginController {
 			model.addAttribute("phone",apiJson.get("mobile"));
 			model.addAttribute("name",apiJson.get("name"));
 			model.addAttribute("age",apiJson.get("birthyear"));
+			model.addAttribute("kakao_id","");
+			model.addAttribute("flag","naver");
 
 			// 이부분이 그대로 넘어가서 해당부분을 별도로 입력하지 않아도 아이디하고 비번만 입력해주면 로그인 가능하게 구현
 			

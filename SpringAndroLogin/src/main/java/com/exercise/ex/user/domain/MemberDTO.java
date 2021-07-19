@@ -10,6 +10,7 @@ public class MemberDTO {
 	private String age;
 	private String phoneNumber;
 	private String naver_id = null;
+	private String kakao_id = null;
 
 
 	public String getId() {
@@ -74,6 +75,14 @@ public class MemberDTO {
 
 	public void setNaver_id(String naver_id) {
 		this.naver_id = naver_id;
+	}
+
+	public String getKakao_id() {
+		return kakao_id;
+	}
+
+	public void setKakao_id(String kakao_id) {
+		this.kakao_id = kakao_id;
 	}
 
 }

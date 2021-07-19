@@ -32,6 +32,7 @@ public class RegistrationController {
         logger.info("register page...");
 		model.addAttribute("email","");
 		model.addAttribute("naver_id","");
+		model.addAttribute("kakao_id","");
 		model.addAttribute("phone","");
 		model.addAttribute("name","");
 		model.addAttribute("age","");

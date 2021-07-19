@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.exercise.ex.user.domain.KakaoLoginDTO;
 import com.exercise.ex.user.domain.LoginDTO;
 import com.exercise.ex.user.domain.MemberDTO;
 import com.exercise.ex.user.domain.NaverLoginDTO;
@@ -72,6 +73,18 @@ public class MemberDAOImpl implements MemberDAO{
 		// TODO Auto-generated method stub
 		 sqlSession.update(Namespace + ".setNaverConnection", naverLoginDTO);
 
+	}
+
+	@Override
+	public Map<String, Object> getKakaoConn(KakaoLoginDTO kakaoLoginDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(Namespace + ".getKakaoConn", kakaoLoginDTO);
+	}
+
+	@Override
+	public void setKakaoConnection(KakaoLoginDTO kakaoLoginDTO) throws Exception {
+		 sqlSession.update(Namespace + ".setKakaoConnection", kakaoLoginDTO);
+		
 	}
 
 

@@ -30,12 +30,16 @@
 		String age = (String)request.getAttribute("age");
 		String phone = (String)request.getAttribute("phone");
 		String naver_id = (String)request.getAttribute("naver_id");
+		String kakao_id = (String)request.getAttribute("kakao_id");
+		String flag = (String)request.getAttribute("flag");
+
 		System.out.print(name);
 		System.out.print(email);
 		System.out.print(age);
 		System.out.print(phone);
 		System.out.print(naver_id);
-
+		System.out.print(kakao_id);
+		System.out.print(flag);
 	%>
 </head>
 
@@ -51,11 +55,15 @@
                     <div class="text-center">
                         <div class="p-5">
                         
-                        <% if((!name.equals("")) && (!email.equals("")) && (!phone.equals("")) && (!age.equals(""))) { %>
+                        <% if(flag.equals("naver")) { %>
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Connect with your Email!</h1>
+                                <h1 class="h4 text-gray-900 mb-4">Connect with your Naver Email!</h1>
                             </div>
-                          <% }else { %>
+                        <% }else if(flag.equals("kakao")){ %>
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Connect with your Kakao Email!</h1>
+                            </div>
+                        <% }else { %>
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                             </div>                          	
@@ -64,7 +72,7 @@
                             <!--  ------------------edit!--------------------- -->
                             <form class="user" action = "/register" method = "POST">
                             
-                            <% if((!name.equals("")) && (!email.equals("")) && (!phone.equals("")) && (!age.equals(""))) { %>
+                            <% if(flag.equals("naver")) { %>
 	                                <div class="form-group row">
 	                                    <div class="col-sm">
 	                                        <input type="hidden" class="form-control form-control-user" id="user_name" name = "name"  value = "${name}">
@@ -93,8 +101,54 @@
 	                                        <input type="hidden" class="form-control form-control-user" id="user_naverID" name = "naver_id" value = "${naver_id}">
 	                                    </div>
 	                                </div>
+	                                
+	                                <div class="form-group row">
+	                                    <div class="col-sm">
+	                                        <input type="hidden" class="form-control form-control-user" id="user_kakaoID" name = "kakao_id" value = "${kakao_id}">
+	                                    </div>
+	                                </div>
                                 
-                              <% } else{ %>
+                              <% }else if(flag.equals("kakao")){ %>
+                              
+	                              	<div class="form-group row">
+		                                 <div class="col-sm">
+		                                     <input type="hidden" class="form-control form-control-user" id="user_name" name = "name"  value = "${name}">
+		                                 </div>
+		                            </div>
+		                                
+		                            <div class="form-group row">
+		                                 <div class="col-sm">
+		                                     <input type="hidden" class="form-control form-control-user" id="user_email" name = "email" value = "${email}">
+		                                 </div>
+		                            </div>
+		                                
+		                            <div class="form-group row">
+	                                    <div class="col-sm">
+	                                        <input type="hidden" class="form-control form-control-user" id="user_kakaoID" name = "kakao_id" value = "${kakao_id}">
+	                                    </div>
+	                                </div>    
+	                                
+	                                <!-- 
+		                            <div class="form-group row">
+	                                    <div class="col-sm">
+	                                        <input type="hidden" class="form-control form-control-user" id="user_naverID" name = "naver_id" value = "${naver_id}">
+	                                    </div>
+	                                </div>
+	                                -->
+	                                    
+		                            <div class="form-group row">
+	                                    <div class="col-sm">
+	                                        <input type="text" class="form-control form-control-user" id="user_age" name = "age" placeholder="Enter age">
+	                                    </div>
+	                                </div>
+	                                
+	                                <div class="form-group row">
+	                                    <div class="col-sm">
+	                                        <input type="text" class="form-control form-control-user" id="user_phone" name = "phoneNumber" placeholder="Enter phoneNumber">
+	                                    </div>
+	                                </div>
+	                                    
+                              <% }else{ %>
 	                                <div class="form-group row">
 	                                    <div class="col-sm">
 	                                        <input type="text" class="form-control form-control-user" id="user_name" name = "name" placeholder="Enter Name">

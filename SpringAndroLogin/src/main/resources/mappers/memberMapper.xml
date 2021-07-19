@@ -30,7 +30,8 @@
 		position, 
 		age, 
 		phoneNumber,
-		naver_login
+		naver_login,
+		kakao_login
 		) VALUES (
 		#{id}
 		, #{pw}
@@ -40,6 +41,7 @@
 		, #{age}
 		, #{phoneNumber}
 		, #{naver_id}
+		, #{kakao_id}
 		)
 	</insert>
 
@@ -59,7 +61,8 @@
 	
 	<select id = "getNaverConn" resultType = "Map">
 	
-	 	SELECT email,
+	 	SELECT
+	 	email,
 	 	name,
 	 	naver_login
 	 	FROM test
@@ -72,6 +75,26 @@
 		
 		UPDATE test
 		SET naver_login = #{naver_id}
+		WHERE email = #{email}
+	
+	</update>
+	
+	<select id = "getKakaoConn" resultType = "Map">
+	
+	 	SELECT
+	 	email,
+	 	name,
+	 	kakao_login
+	 	FROM test
+	 	WHERE email = 
+	 	#{email}
+	 	
+	</select>
+	
+	<update id = "setKakaoConnection">
+		
+		UPDATE test
+		SET kakao_login = #{kakao_id}
 		WHERE email = #{email}
 	
 	</update>

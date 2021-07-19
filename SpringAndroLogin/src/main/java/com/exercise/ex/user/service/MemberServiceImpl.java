@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import com.exercise.ex.user.dao.MemberDAO;
+import com.exercise.ex.user.domain.KakaoLoginDTO;
 import com.exercise.ex.user.domain.LoginDTO;
 import com.exercise.ex.user.domain.MemberDTO;
 import com.exercise.ex.user.domain.NaverLoginDTO;
@@ -59,6 +60,20 @@ public class MemberServiceImpl implements MemberService {
 	public void setNaverConnection(NaverLoginDTO naverLoginDTO) throws Exception {
 
 		dao.setNaverConnection(naverLoginDTO);
+	}
+
+	@Override
+	public Map<String, Object> kakaoConnectionCheck(KakaoLoginDTO kakaoLoginDTO) throws Exception {
+		Map<String, Object> kakaoConInfo = dao.getKakaoConn(kakaoLoginDTO);
+		return kakaoConInfo;
+	}
+
+	@Override
+	public void setKakaoConnection(KakaoLoginDTO kakaoLoginDTO) throws Exception {
+		// TODO Auto-generated method stub
+		
+		dao.setKakaoConnection(kakaoLoginDTO);
+		
 	}
  
 }

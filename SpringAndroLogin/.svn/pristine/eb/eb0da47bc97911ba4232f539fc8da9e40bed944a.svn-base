@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.exercise.ex.mappers.memberMapper">
+
+	<select id="selectMember" resultType="MemberDTO">
+		SELECT id
+		, name
+		, email
+		, position
+		, age
+		, phoneNumber
+		FROM test
+	</select>
+
+	<select id="login" resultType="MemberDTO">
+		SELECT *
+		FROM test
+		WHERE id = #{id}
+	</select>
+
+	<insert id="register">
+		INSERT INTO test (
+		id
+		, pw
+		, name
+		) VALUES (
+		#{id}
+		, #{pw}
+		, #{name}
+		)
+	</insert>
+
+	<select id="getUserPw" resultType="string">
+		SELECT pw
+		FROM test
+		WHERE id =
+		#{id}
+	</select>
+
+	<select id="getUserId" resultType="string">
+		SELECT id
+		FROM test
+		WHERE id =
+		#{id}
+	</select>
+
+</mapper>
+

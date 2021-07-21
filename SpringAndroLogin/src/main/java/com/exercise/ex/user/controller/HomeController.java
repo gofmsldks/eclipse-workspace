@@ -61,7 +61,7 @@ public class HomeController {
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index(Model model) throws Exception{
 
-		logger.info("init page");
+		logger.info("main page...");
 		List<MemberDTO> memberList = service.selectMember();
 
 		model.addAttribute("memberList", memberList);

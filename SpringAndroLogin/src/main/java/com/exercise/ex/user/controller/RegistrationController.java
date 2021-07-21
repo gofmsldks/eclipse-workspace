@@ -36,6 +36,7 @@ public class RegistrationController {
 		model.addAttribute("phone","");
 		model.addAttribute("name","");
 		model.addAttribute("age","");
+		model.addAttribute("flag","");
 
         return "register";
     }

@@ -34,7 +34,7 @@ public class KakaoLoginController {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 
 		kakaoLoginDTO.setEmail((String)paramMap.get("email"));
-		kakaoLoginDTO.setName((String)paramMap.get("nickname"));
+		kakaoLoginDTO.setName((String)paramMap.get("nickName"));
 		kakaoLoginDTO.setKakao_id((String)paramMap.get("id"));
 		Map<String, Object> kakaoConnectionCheck = service.kakaoConnectionCheck(kakaoLoginDTO);
 
@@ -46,13 +46,13 @@ public class KakaoLoginController {
 			service.setKakaoConnection(kakaoLoginDTO);
 			
 			session.setAttribute("memberId",(String)paramMap.get("email") );
-			session.setAttribute("memberName",(String)paramMap.get("nickname") );
+			session.setAttribute("memberName",(String)paramMap.get("nickName") );
 			session.setAttribute("MEMBERINFO",kakaoLoginDTO);;
 			resultMap.put("JavaData", "YES");
 			
 		}else{ //모두 연동 되어있을시
 			session.setAttribute("memberId",(String)paramMap.get("email") );
-			session.setAttribute("memberName",(String)paramMap.get("nickname") );
+			session.setAttribute("memberName",(String)paramMap.get("nickName") );
 			session.setAttribute("MEMBERINFO",kakaoLoginDTO);;
 			resultMap.put("JavaData", "YES");
 		}

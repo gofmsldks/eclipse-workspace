@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.exercise.ex.mappers.memberMapper">
+
+	<select id="selectMember" resultType="MemberDTO">
+		SELECT id
+		, name
+		, email
+		, position
+		, age
+		, phoneNumber
+		FROM test
+	</select>
+
+	<select id="login" resultType="MemberDTO">
+		SELECT *
+		FROM test
+		WHERE id = #{id}
+	</select>
+
+	<insert id="register">
+		INSERT INTO test (
+		id,
+		pw,
+		name, 
+		email, 
+		position, 
+		age, 
+		phoneNumber,
+		naver_login,
+		kakao_login
+		) VALUES (
+		#{id}
+		, #{pw}
+		, #{name}
+		, #{email}
+		, #{position}
+		, #{age}
+		, #{phoneNumber}
+		, #{naver_id}
+		, #{kakao_id}
+		)
+	</insert>
+
+	<select id="getUserPw" resultType="string">
+		SELECT pw
+		FROM test
+		WHERE id =
+		#{id}
+	</select>
+
+	<select id="getUserId" resultType="string">
+		SELECT id
+		FROM test
+		WHERE id =
+		#{id}
+	</select>
+	
+	<select id = "getNaverConn" resultType = "Map">
+	
+	 	SELECT
+	 	email,
+	 	name,
+	 	naver_login
+	 	FROM test
+	 	WHERE email = 
+	 	#{email}
+	 	
+	</select>
+	
+	<update id = "setNaverConnection">
+		
+		UPDATE test
+		SET naver_login = #{naver_id}
+		WHERE email = #{email}
+	
+	</update>
+	
+	<select id = "getKakaoConn" resultType = "Map">
+	
+	 	SELECT
+	 	email,
+	 	name,
+	 	kakao_login
+	 	FROM test
+	 	WHERE email = 
+	 	#{email}
+	 	
+	</select>
+	
+	<update id = "setKakaoConnection">
+		
+		UPDATE test
+		SET kakao_login = #{kakao_id}
+		WHERE email = #{email}
+	
+	</update>
+	
+
+</mapper>
+

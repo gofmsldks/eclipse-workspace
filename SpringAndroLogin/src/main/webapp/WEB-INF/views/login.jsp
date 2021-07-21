@@ -103,25 +103,37 @@
                                         </div>
                                         </div>
                                         
-                    					<button type="button" class ="btn btn-primary btn-user btn-block" onclick = "login_click();">로그인</button>
-     
+                    					<button type="button" class ="btn btn-primary btn-user btn-block" onclick = "location.href='${url}'">로그인</button>
+     									
+     									
      									<br>
                                         <hr>
-                                        
-										 <!-- 네이버 로그인 창으로 이동 -->
+     									
+     									
+     									<!-- 네이버 로그인 창으로 이동 -->
+     										
 										<div id="naver_id_login" style="text-align:center">
 											<a href="${url}">
-												<img width="223" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/>
+												<img width = 306px height = 50px src="resources/img/2021_Login_with_naver_guidelines_Kr/btnG_완성형.png"/>
 											</a>
 										</div>
+
 										
 										
 										<!-- 카카오 로그인 창으로 이동 -->
+										
 										<div id="kakao_id_login" style="text-align:center">
 											<a href="javascript:kakaoLogin()">
-												카카오 아이디로 로그인
+												<img width = 306px height = 50px src="resources/img/kakao_login_large_wide.png"/>
 											</a>
 										</div>
+	
+										
+										
+										
+     									<br>
+                                        <hr>
+                     
 
                                     </div>
 
@@ -150,6 +162,10 @@
 <%  } %>
 
 	 <script>
+	 
+	 /*
+	 로그인 버튼 클릭시 동작
+	 */
 	 
 	 function login_click(){
 			var userID = $('input[name="id"]').val();
@@ -203,6 +219,12 @@
 	 
 	 
 	<script type="text/javascript">
+	
+	 /*
+	 * 회원 가입 부분 alert 
+	 */
+	
+	
 	if ("${msg}" == "REGISTERED"){
 		alert('회원가입 완료 로그인 해주세요');
 		
@@ -223,8 +245,12 @@
 	
 	</script>
 	
+	
 	<script>
 	
+	 /*
+	 * 카카오 로그인 버튼 클릭시 동작
+	 */
 		function kakaoLogin() {
 			Kakao.Auth.login({
 				success: function (authObj) {
@@ -252,7 +278,9 @@
 	
 	<script>
 	
-	
+	 /*
+	 * 카카오 로그인 시 카카오 로그인 정보를 받아오는 부분
+	 */
 		function kakaoLoginCallback(response){
 			var data = {'email':response.kakao_account.email, 'id':response.id, 'nickName': response.kakao_account.profile.nickname};
 			$.ajax({
@@ -267,7 +295,7 @@
 						location.href = '/index'
 					}else if(res.JavaData == "register"){
 						$("#kakaoEmail").val(response.kakao_account.email);
-						$("#kakaoId").val(response.kakao_account.id);
+						$("#kakaoId").val(response.id);
 						$("#kakaoNickName").val(response.kakao_account.profile.nickname);
 						$("#kakaoForm").submit();
 					}else{

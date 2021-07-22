@@ -1,4 +1,4 @@
-package com.exercise.ex.user.controller;
+package com.exercise.ex.user.naverLogin;
 
 import java.io.IOException;
 import java.util.Map;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.exercise.ex.user.domain.NaverLoginDTO;
-import com.exercise.ex.user.naverLogin.NaverLoginBO;
 import com.exercise.ex.user.service.MemberService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.scribejava.core.model.OAuth2AccessToken;

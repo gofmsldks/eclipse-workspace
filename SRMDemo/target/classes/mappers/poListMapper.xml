@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sebang.srm.mappers.poListMapper">
+
+	<select id="selectAllPoList" resultType="PoListInfoDTO">
+		SELECT
+		  po_number
+		, send
+		, receive
+		, start_date
+		, end_date
+		, price
+		, user_name
+		FROM test_list
+		WHERE user_name = #{userName}
+	</select>
+	
+	<select id="selectSearchPoList" resultType="PoListInfoDTO">
+		SELECT 
+		  po_number
+		, send
+		, receive
+		, start_date
+		, end_date
+		, price
+		, user_name
+		FROM test_list
+		<![CDATA[
+		WHERE user_name = #{userName} AND receive LIKE CONCAT('%',#{search},'%')
+		]]>
+	</select>
+
+
+			<!--  날짜 관련 검색 기능 미구현 AND end_date >= #{startDate} AND end_date <= #{endDate} -->
+	
+
+</mapper>

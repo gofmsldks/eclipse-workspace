@@ -11,6 +11,123 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+
+	<!--  데이트 피커  CDN -->
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js" integrity="sha512-k6/Bkb8Fxf/c1Tkyl39yJwcOZ1P4cRrJu77p83zJjN2Z55prbFHxPs9vN7q3l3+tSMGPDdoH51AEU8Vgo1cgAA==" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css" integrity="sha512-3JRrEUwaCkFUBLK1N8HehwQgu8e23jTH4np5NHOmQOobuC4ROQxFwFgBLTnhcnQRMs84muMh0PnnwXlPq5MGjg==" crossorigin="anonymous" />
+
+	<!--  데이트 피커 CDN 끝 -->
+
+	<!-- datatables https://datatables.net/-->
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+	
+	<script>
+		console.log(${data})
+		$(document).ready( function () {
+	    	$('#PoTable').DataTable({
+	    		
+	    		// 상태 저장
+		    	bStateSave: true,
+		    	// 표시 건수기능 숨기기
+		    	lengthChange: true,
+		    	// 검색 기능 숨기기
+		    	searching: false,
+		    	// 정렬 기능 숨기기
+		    	ordering: true,
+		    	// 정보 표시 숨기기
+		    	info: true,
+		    	// 페이징 기능 숨기기
+		    	paging: false,
+		    	
+		    	// 가로 스크롤바를 표시
+		    	// 설정 값은 true 또는 false
+		    	scrollX: true,
+
+		    	// 세로 스크롤바를 표시
+		    	// 설정 값은 px단위
+		    	scrollY: 400,
+		    	
+		    	data: ${data},
+		    	
+		    	columns: [
+		    		{ data: 'po_number' },
+		     		{ data: 'po_number' },
+		     		{ data: 'send' },
+		          	{ data: 'receive'},
+		           	{ data: 'start_date'},
+		           	{ data: 'end_date'},
+		           	{ data: 'price'},
+		           	{ data: 'user_name' }
+		           	
+		     	],
+		     	
+		     	 columnDefs: [{
+		             targets: 0,
+		             searchable: false,
+		             orderable: false,
+		             className: 'dt-body-center',
+		             render: function (data, type, full, meta){
+		                 return '<input type="checkbox" name="id[]" value="' + $('<div/>').text(data).html() + '">';
+		             }
+		          }],
+		          order: [[1, 'asc']]
+		    		    	
+		    	
+	    	});
+
+		} );
+		
+		
+	</script>
+	
+	<script>
+	$(document).ready( function () {
+    	$('#PoTable2').DataTable({
+    		
+    		// 상태 저장
+	    	bStateSave: true,
+	    	// 표시 건수기능 숨기기
+	    	lengthChange: true,
+	    	// 검색 기능 숨기기
+	    	searching: false,
+	    	// 정렬 기능 숨기기
+	    	ordering: true,
+	    	// 정보 표시 숨기기
+	    	info: true,
+	    	// 페이징 기능 숨기기
+	    	paging: false,
+	    	
+	    	// 가로 스크롤바를 표시
+	    	// 설정 값은 true 또는 false
+	    	scrollX: true,
+
+	    	// 세로 스크롤바를 표시
+	    	// 설정 값은 px단위
+	    	scrollY: 400,
+	    	
+	    	columnDefs: [{
+	             targets: 0,
+	             searchable: false,
+	             orderable: false,
+	             className: 'dt-body-center',
+	             render: function (data, type, full, meta){
+	                 return '<input type="checkbox" name="id[]" value="' + $('<div/>').text(data).html() + '">';
+	             }
+	          }],
+	          order: [[1, 'asc']]
+    		
+    	});
+
+	} );
+	</script>
+	<!--  datatables end -->
+	
+	
+	
     <title>DETAIL</title>
 
     <!-- Custom fonts for this template-->
@@ -45,122 +162,11 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/index">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">SEBANG</div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>HOME</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Interface
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Addons
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="/login">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-        </ul>
+     <%@ include file="/WEB-INF/views/common/sidebar.jsp" %>
         <!-- End of Sidebar -->
+
+
+
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -176,19 +182,6 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -204,7 +197,7 @@
                                 aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
+                                        <input type="text" sclass="form-control bg-light border-0 small"
                                             placeholder="Search for..." aria-label="Search"
                                             aria-describedby="basic-addon2">
                                         <div class="input-group-append">
@@ -377,11 +370,13 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        <h1 class="h3 mb-0 text-gray-800">SRM SLB</h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
 
+					
+					
                     <!-- Content Row -->
                     <div class="row">
 
@@ -468,18 +463,80 @@
                             </div>
                         </div>
                     </div>
-
+                    
+                    
+				<!--  search contents Row-->
+				<div class="row">
+					
+					
+					<!-- Topbar Search -->
+					
+                    <form class = "form-inline">
+                    
+                       <div class = "col-xl-4 lg-12 md-12">
+                        <div class = "form-group">
+                            <input type="text" style = "width:100%;" class="form-control bg-white border-20" name = "search" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                         </div>
+                        </div>
+		                     <!--  데이트 피커  -->
+		                     <div class = "col-xl-3 lg-12 md-12">
+		                        <div class="form-group">
+		                         
+		                          <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+		                           <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" value="" name = "startDate" placeholder = "YYYY-MM-DD">
+		                            <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+		                             <div class="input-group-text"><i class="fa fa-calendar"></i>
+		                               </div>
+		                              </div>
+		                             </div>
+		                          </div>
+		                      </div>
+		                      
+		                      <div class = "col-xl-0 lg-0 md-0 xs-0">
+		                          <b>~</b>
+                              </div>
+                         
+                         <div class = "col-xl-3 lg-12 md-12">
+                           <div class="form-group">
+                            
+                              <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" value="" name = "endDate" placeholder = "YYYY-MM-DD">
+                                     <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
+                                     <div class="input-group-text"><i class="fa fa-calendar"></i>
+                                 </div>
+                              </div>
+                             
+                           </div>
+                          </div>
+                        </div>
+                     <!--  데이트 피커  끝-->
+                     
+                     <!-- search button -->
+                            <div>
+                                <button class="btn btn-primary" type="button" id = "search_button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                         </form>
+                        
+                       
+                       </div>
+				
+					
+					
+					
                     <!-- Content Row -->
 
                     <div class="row">
 
                         <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
+                        <div class="col-xl-12 col-lg-12">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">발주 리스트</h6>
                                     <div class="dropdown no-arrow">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -497,207 +554,137 @@
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
-                                    </div>
-                                </div>
+									<!--  발주리스트 내용 -->
+									
+									<table id="PoTable" class="display nowrap dataTable dtr-inline collapsed"
+										style="width: 100%;" role="grid" aria-describedby="example_info">
+										<thead>
+											<tr role="row">
+											
+												<th class="sorting sorting_desc" tabindex="0"
+														aria-controls="example" rowspan="1" colspan="1"
+														style="width: 10px;"
+														aria-label="checkBox: activate to sort column ascending"
+														aria-sort="descending"><input type="checkbox" name="select_all" value="0" id="PoTable-select-all"></th>
+												
+												<th class="sorting sorting_desc" tabindex="0"
+													aria-controls="example" rowspan="1" colspan="1"
+													style="width: 108px;"
+													aria-label="Name: activate to sort column ascending"
+													aria-sort="descending">po_number</th>
+													
+												<th class="sorting" tabindex="0" aria-controls="example"
+													rowspan="1" colspan="1" style="width: 176px;"
+													aria-label="Position: activate to sort column ascending">send</th>
+													
+												<th class="sorting" tabindex="0" aria-controls="example"
+													rowspan="1" colspan="1" style="width: 80px;"
+													aria-label="Office: activate to sort column ascending">receive</th>
+													
+												<th class="sorting" tabindex="0"
+													aria-controls="example" rowspan="1" colspan="1"
+													style="width: 80px;"
+													aria-label="Age: activate to sort column ascending">start_date</th>
+													
+												<th class="dt-body-right sorting" tabindex="0" aria-controls="example"
+													rowspan="1" colspan="1" style="width: 29px;"
+													aria-label="Start date: activate to sort column ascending">end_date</th>
+													
+												<th class="dt-body-right sorting" tabindex="0"
+													aria-controls="example" rowspan="1" colspan="1"
+													style="width: 29px;"
+													aria-label="Salary: activate to sort column ascending">price</th>
+													
+												<th class="dt-body-right sorting" tabindex="0"
+													aria-controls="example" rowspan="1" colspan="1"
+													style="width: 29px;"
+													aria-label="Salary: activate to sort column ascending">user_name</th>
+											</tr>
+											
+											
+										</thead>
+										
+										
+										
+								
+									</table>
+
+
+								</div>
                             </div>
                         </div>
 
-                        <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
-                                    </div>
-                                    <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Direct
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Social
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Referral
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                     <!-- Content Row -->
                     <div class="row">
 
                         <!-- Content Column -->
-                        <div class="col-lg-6 mb-4">
+                        <div class="col-xl-12 col-lg-12 mb-12">
 
-                            <!-- Project Card Example -->
+                            <!-- 발주 리스트 세부 내용 Card Example -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">발주 리스트 세부 내용</h6>
                                 </div>
                                 <div class="card-body">
-                                    <h4 class="small font-weight-bold">Server Migration <span
-                                            class="float-right">20%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
-                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Sales Tracking <span
-                                            class="float-right">40%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
-                                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Customer Database <span
-                                            class="float-right">60%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar" role="progressbar" style="width: 60%"
-                                            aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Payout Details <span
-                                            class="float-right">80%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
-                                            aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Account Setup <span
-                                            class="float-right">Complete!</span></h4>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
-                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Color System -->
-                            <div class="row">
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-primary text-white shadow">
-                                        <div class="card-body">
-                                            Primary
-                                            <div class="text-white-50 small">#4e73df</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-success text-white shadow">
-                                        <div class="card-body">
-                                            Success
-                                            <div class="text-white-50 small">#1cc88a</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-info text-white shadow">
-                                        <div class="card-body">
-                                            Info
-                                            <div class="text-white-50 small">#36b9cc</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-warning text-white shadow">
-                                        <div class="card-body">
-                                            Warning
-                                            <div class="text-white-50 small">#f6c23e</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-danger text-white shadow">
-                                        <div class="card-body">
-                                            Danger
-                                            <div class="text-white-50 small">#e74a3b</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-secondary text-white shadow">
-                                        <div class="card-body">
-                                            Secondary
-                                            <div class="text-white-50 small">#858796</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-light text-black shadow">
-                                        <div class="card-body">
-                                            Light
-                                            <div class="text-black-50 small">#f8f9fc</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-dark text-white shadow">
-                                        <div class="card-body">
-                                            Dark
-                                            <div class="text-white-50 small">#5a5c69</div>
-                                        </div>
-                                    </div>
+                               		<!--  발주리스트 세부 내용이 들어갈 자리 -->
+                               		
+                               		<table id="PoTable2" class="display nowrap dataTable dtr-inline collapsed"
+										style="width: 100%;" role="grid" aria-describedby="example_info">
+										<thead>
+											<tr role="row">
+											
+												<th class="sorting sorting_desc" tabindex="0"
+														aria-controls="example" rowspan="1" colspan="1"
+														style="width: 10px;"
+														aria-label="checkBox: activate to sort column ascending"
+														aria-sort="descending"><input type="checkbox" name="select_all" value="0" id="PoTable-select-all"></th>
+												
+												<th class="sorting sorting_desc" tabindex="0"
+													aria-controls="example" rowspan="1" colspan="1"
+													style="width: 108px;"
+													aria-label="Name: activate to sort column ascending"
+													aria-sort="descending">po_number</th>
+													
+												<th class="sorting" tabindex="0" aria-controls="example"
+													rowspan="1" colspan="1" style="width: 176px;"
+													aria-label="Position: activate to sort column ascending">send</th>
+													
+												<th class="sorting" tabindex="0" aria-controls="example"
+													rowspan="1" colspan="1" style="width: 80px;"
+													aria-label="Office: activate to sort column ascending">receive</th>
+													
+												<th class="sorting" tabindex="0"
+													aria-controls="example" rowspan="1" colspan="1"
+													style="width: 80px;"
+													aria-label="Age: activate to sort column ascending">start_date</th>
+													
+												<th class="dt-body-right sorting" tabindex="0" aria-controls="example"
+													rowspan="1" colspan="1" style="width: 29px;"
+													aria-label="Start date: activate to sort column ascending">end_date</th>
+													
+												<th class="dt-body-right sorting" tabindex="0"
+													aria-controls="example" rowspan="1" colspan="1"
+													style="width: 29px;"
+													aria-label="Salary: activate to sort column ascending">price</th>
+													
+												<th class="dt-body-right sorting" tabindex="0"
+													aria-controls="example" rowspan="1" colspan="1"
+													style="width: 29px;"
+													aria-label="Salary: activate to sort column ascending">user_name</th>
+											</tr>
+											
+											
+										</thead>
+                               		
+                               		
+                               		</table>
                                 </div>
                             </div>
 
                         </div>
 
-                        <div class="col-lg-6 mb-4">
-
-                            <!-- Illustrations -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="text-center">
-                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                            src="resources/img/undraw_posting_photo.svg" alt="...">
-                                    </div>
-                                    <p>Add some quality, svg illustrations to your project courtesy of <a
-                                            target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
-                                        constantly updated collection of beautiful svg images that you can use
-                                        completely free and without attribution!</p>
-                                    <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
-                                        unDraw &rarr;</a>
-                                </div>
-                            </div>
-
-                            <!-- Approach -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
-                                </div>
-                                <div class="card-body">
-                                    <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce
-                                        CSS bloat and poor page performance. Custom CSS classes are used to create
-                                        custom components and custom utility classes.</p>
-                                    <p class="mb-0">Before working with this theme, you should become familiar with the
-                                        Bootstrap framework, especially the utility classes.</p>
-                                </div>
-                            </div>
-
-                        </div>
                     </div>
 
                 </div>
@@ -747,8 +734,204 @@
         </div>
     </div>
 
+
+	<!-- 데이트피커 함수 포멧 설정, 최소최대 날짜 설정-->
+	<script>
+		$(function () {
+			console.log("데이트타임피커 설정 함수 동작...");
+			$('#datetimepicker1').datetimepicker({ format: 'YYYY-MM-DD'});
+			$('#datetimepicker2').datetimepicker({ format: 'YYYY-MM-DD', useCurrent: false });
+			$("#datetimepicker1").on("change.datetimepicker", function (e) {
+				$('#datetimepicker2').datetimepicker('minDate', e.date); });
+			$("#datetimepicker2").on("change.datetimepicker", function (e) {
+				$('#datetimepicker1').datetimepicker('maxDate', e.date);
+				});
+			});
+	</script>
+	<!-- 데이트피커 함수 포멧 설정, 최소최대 날짜 설정 끝-->
+	
+	
+	<script>
+	
+		console.log("검색버튼 부분...");
+		function click_searchAndDate(){
+			
+					var search = $('input[name="search"]').val();
+					var startDate = $('input[name="startDate"]').val();
+					var endDate = $('input[name="endDate"]').val();
+					var name = "<%=memberName%>";
+					//var check = $('#customCheck').val();
+				     // JSON으로 요청
+				     
+				     console.log(search + startDate + endDate);
+					if (search == "" && startDate == "" && endDate == ""){
+						alert("검색어 미입력");
+	              	 	window.location.href="/detail";
+					}
+				     
+				     
+				     var send_data = {"userName": name, "search" : search, "startDate" : startDate, "endDate" : endDate};
+				     
+				     $.ajax({
+				
+				              url: "/listSearch",
+				
+				              type: "POST",
+				
+				              dataType: "json",          // ajax 통신으로 받는 타입
+				
+				              contentType: "application/json",  // ajax 통신으로 보내는 타입
+				
+				              data: JSON.stringify(send_data),
+				
+				              success: function(data){
+				            	  
+				            	  if(data.msg == 'NONE'){
+				            		  alert("검색결과가 없습니다.");
+				
+				            	  }else if(data.msg == 'EXIST'){
+				            		var table = $("#PoTable").DataTable();
+				              		table.destroy();
+				              		
+				            		alert("검색결과 입니다.");
+				            		console.log(data);
+				            		
+				            		$('#PoTable').DataTable({
+				            			
+				            			// 상태 저장
+				        		    	bStateSave: true,
+				        		    	// 표시 건수기능 숨기기
+				        		    	lengthChange: true,
+				        		    	// 검색 기능 숨기기
+				        		    	searching: false,
+				        		    	// 정렬 기능 숨기기
+				        		    	ordering: true,
+				        		    	// 정보 표시 숨기기
+				        		    	info: true,
+				        		    	// 페이징 기능 숨기기
+				        		    	paging: false,
+				        		    	
+				        		    	// 가로 스크롤바를 표시
+				        		    	// 설정 값은 true 또는 false
+				        		    	scrollX: true,
+
+				        		    	// 세로 스크롤바를 표시
+				        		    	// 설정 값은 px단위
+				        		    	scrollY: 400,
+				        		    	
+				   
+				        		    
+				        		    	data: data.poList,
+				        		    	 columns: [
+				        		    		{ data: 'po_number' },
+				        		     		{ data: 'po_number' },
+				        		     		{ data: 'send' },
+				        		          	{ data: 'receive'},
+				        		           	{ data: 'start_date'},
+				        		           	{ data: 'end_date'},
+				        		           	{ data: 'price'},
+				        		           	{ data: 'user_name' }
+				        		           	
+				        		     	],
+				        		     	
+				       		     	 columnDefs: [{
+				       		             targets: 0,
+				       		             searchable: false,
+				       		             orderable: false,
+				       		             className: 'dt-body-center',
+				       		             render: function (data, type, full, meta){
+				       		                 return '<input type="checkbox" name="id[]" value="' + $('<div/>').text(data).html() + '">';
+				       		             }
+				       		          }],
+				       		          order: [[1, 'asc']]
+				        		    	
+				        	    	});
+				              	  }
+				              },
+						      error: function(data){
+						    	  alert("REST 오류 발생");
+				              	 	window.location.href="/index";
+		
+						      }
+				
+				     });
+				     
+		
+			}
+		
+		document.getElementById("search_button").addEventListener("click", click_searchAndDate);
+		console.log("검색버튼 클릭...");
+	</script>
+	
+	<script>
+	// Handle click on "Select all" control
+	   $('#PoTable-select-all').on('click', function(){
+	      // Get all rows with search applied
+	      var rows = $('#PoTable').DataTable().rows({ 'search': 'applied' }).nodes();
+	      // Check/uncheck checkboxes for all rows in the table
+	      $('input[type="checkbox"]', rows).prop('checked', this.checked);
+	   });
+	</script>
+	
+	<script>
+	// Handle click on checkbox to set state of "Select all" control
+	   $('#PoTable tbody').on('change', 'input[type="checkbox"]', function(){
+	      // If checkbox is not checked
+	      if(!this.checked){
+	         var el = $('#example-select-all').get(0);
+	         // If "Select all" control is checked and has 'indeterminate' property
+	         if(el && el.checked && ('indeterminate' in el)){
+	            // Set visual state of "Select all" control
+	            // as 'indeterminate'
+	            el.indeterminate = true;
+	         }
+	      }
+	   });
+	</script>
+	
+	<script>
+	
+	// Handle form submission event -> 체크박스 서브밋 함수 -> 서브밋 버튼을 만들어야함. 
+	   $('#frm-example').on('submit', function(e){
+	      var form = this;
+
+	      // Iterate over all checkboxes in the table
+	      table.$('input[type="checkbox"]').each(function(){
+	         // If checkbox doesn't exist in DOM
+	         if(!$.contains(document, this)){
+	            // If checkbox is checked
+	            if(this.checked){
+	               // Create a hidden element
+	               $(form).append(
+	                  $('<input>')
+	                     .attr('type', 'hidden')
+	                     .attr('name', this.name)
+	                     .val(this.value)
+	               );
+	            }
+	         }
+	      });
+	   });
+	</script>
+
+
+	<script>
+	// 클릭시 상세 내용
+	
+		$(document).ready(function(){
+			console.log("클릭시 상세내용 함수 동작...")
+			var table = $('#PoTable').DataTable();
+			 
+			$('#example tbody').on( 'click', 'tr', function () {
+				this_row = table.rows(this).data();
+				$('#PoTable2').html(table.row( this ).data());
+			} );
+		});
+	
+	</script>
+	 
+
     <!-- Bootstrap core JavaScript-->
-    <script src="../resources/vendor/jquery/jquery.min.js"></script>
     <script src="../resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
@@ -764,6 +947,8 @@
     <script src="../resources/js/demo/chart-area-demo.js"></script>
     <script src="../resources/js/demo/chart-pie-demo.js"></script>
 
+
+
 </body>
 
-</html>s
+</html>

@@ -32,10 +32,10 @@
 
 	<resources mapping="/resources/**" location="/resources/" />
 	
-	<context:component-scan base-package="com.sebang.srm" />
+	<context:component-scan base-package="com.sbg.srm" />
 	
 	
-	<beans:bean id = "loginCheck" class = "com.sebang.srm.user.interceptor.LoginCheck"/>
+	<beans:bean id = "loginCheck" class = "com.sbg.srm.user.interceptor.LoginCheck"/>
 	
 
 

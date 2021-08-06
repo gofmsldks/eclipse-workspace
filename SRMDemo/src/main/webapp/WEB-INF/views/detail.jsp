@@ -21,7 +21,9 @@
 
 	<!--  데이트 피커 CDN 끝 -->
 
-	<!-- datatables https://datatables.net/-->
+
+
+	<!-- datatables CDN https://datatables.net/-->
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
 	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 	
@@ -61,7 +63,8 @@
 		           	{ data: 'start_date'},
 		           	{ data: 'end_date'},
 		           	{ data: 'price'},
-		           	{ data: 'user_name' }
+		           	{ data: 'user_name' },
+		           	{ data: 'po_number'}
 		           	
 		     	],
 		     	
@@ -73,7 +76,22 @@
 		             render: function (data, type, full, meta){
 		                 return '<input type="checkbox" name="id[]" value="' + $('<div/>').text(data).html() + '">';
 		             }
-		          }],
+		          },
+		          
+		          {
+			             targets: 8,
+			             searchable: false,
+			             orderable: false,
+			             className: 'dt-body-center',
+			             render: function (data, type, full, meta){
+			                 return '<button class="btn btn-info" type="button" name = "edit_btn" value = "'+ $('<div/>').text(data).html() +'">' + 'EDIT' + '</button>'
+			                 		+ '<button class="btn btn-danger" type="button" name = "delete_btn" value = "'+ $('<div/>').text(data).html() +'">' + 'DELETE' + '</button>';
+			             }
+			          }
+		          
+		          ],
+		          
+			          
 		          order: [[1, 'asc']]
 		    		    	
 		    	
@@ -124,6 +142,8 @@
 
 	} );
 	</script>
+	
+
 	<!--  datatables end -->
 	
 	
@@ -556,6 +576,8 @@
                                 <div class="card-body">
 									<!--  발주리스트 내용 -->
 									
+									<button class="btn btn-primary" type="button" name = "edit_btn" >CREATE NEW RECORD</button>
+									
 									<table id="PoTable" class="display nowrap dataTable dtr-inline collapsed"
 										style="width: 100%;" role="grid" aria-describedby="example_info">
 										<thead>
@@ -599,6 +621,11 @@
 													aria-controls="example" rowspan="1" colspan="1"
 													style="width: 29px;"
 													aria-label="Salary: activate to sort column ascending">user_name</th>
+													
+												<th class="dt-body-right sorting" tabindex="0"
+													aria-controls="example" rowspan="1" colspan="1"
+													style="width: 29px;"
+													aria-label="Salary: activate to sort column ascending">Edit / Delete</th>
 											</tr>
 											
 											
@@ -673,6 +700,11 @@
 													aria-controls="example" rowspan="1" colspan="1"
 													style="width: 29px;"
 													aria-label="Salary: activate to sort column ascending">user_name</th>
+													
+												<th class="dt-body-right sorting" tabindex="0"
+													aria-controls="example" rowspan="1" colspan="1"
+													style="width: 29px;"
+													aria-label="Salary: activate to sort column ascending">Edit / Delete</th>
 											</tr>
 											
 											
@@ -830,7 +862,8 @@
 				        		           	{ data: 'start_date'},
 				        		           	{ data: 'end_date'},
 				        		           	{ data: 'price'},
-				        		           	{ data: 'user_name' }
+				        		           	{ data: 'user_name' },
+				        		            { data: 'po_number'}
 				        		           	
 				        		     	],
 				        		     	
@@ -842,7 +875,20 @@
 				       		             render: function (data, type, full, meta){
 				       		                 return '<input type="checkbox" name="id[]" value="' + $('<div/>').text(data).html() + '">';
 				       		             }
+				       		     	 },
+				       		             
+				       		         {
+					 			             targets: 8,
+					 			             searchable: false,
+					 			             orderable: false,
+					 			             className: 'dt-body-center',
+					 			             render: function (data, type, full, meta){
+					 			                 return '<button class="btn btn-info" type="button" name = "edit_btn" value = "'+ $('<div/>').text(data).html() +'">' + 'EDIT' + '</button>'
+					 			                 		+ '<button class="btn btn-danger" type="button" name = "delete_btn" value = "'+ $('<div/>').text(data).html() +'">' + 'DELETE' + '</button>';
+					 			             }
+					 			          }
 				       		          }],
+
 				       		          order: [[1, 'asc']]
 				        		    	
 				        	    	});
@@ -922,13 +968,15 @@
 			console.log("클릭시 상세내용 함수 동작...")
 			var table = $('#PoTable').DataTable();
 			 
-			$('#example tbody').on( 'click', 'tr', function () {
+			$('#PoTable tbody').on( 'click', 'tr', function () {
 				this_row = table.rows(this).data();
 				$('#PoTable2').html(table.row( this ).data());
 			} );
 		});
 	
 	</script>
+	
+
 	 
 
     <!-- Bootstrap core JavaScript-->

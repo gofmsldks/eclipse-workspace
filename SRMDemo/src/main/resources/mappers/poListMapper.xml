@@ -32,9 +32,40 @@
 		WHERE user_name = #{userName} AND receive LIKE CONCAT('%',#{search},'%')
 		]]>
 	</select>
-
-
-			<!--  날짜 관련 검색 기능 미구현 AND end_date >= #{startDate} AND end_date <= #{endDate} -->
+	<!--  날짜 관련 검색 기능 미구현 AND end_date >= #{startDate} AND end_date <= #{endDate} -->
+	
+	<insert id="createPoList">
+		INSERT INTO test_list (
+			po_number,
+			send, 
+			receive, 
+			start_date, 
+			end_date, 
+			price,
+			user_name
+			) VALUES (
+			#{po_number}
+			, #{send}
+			, #{receive}
+			, #{start_date}
+			, #{end_date}
+			, #{price}
+			, #{user_name}
+		)
+	</insert>
+	
+	<update id = "updatePoList">
+		UPDATE test_list
+		SET
+		po_number = #{po_number},
+		send = #{send},
+		receive = #{receive},
+		start_date = #{start_date},
+		end_date = #{end_date},
+		price = #{price},
+		user_name = #{user_name}
+		WHERE po_number = #{po_number}
+	</update>
 	
 
 </mapper>

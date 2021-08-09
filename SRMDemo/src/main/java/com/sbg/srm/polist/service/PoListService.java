@@ -9,4 +9,8 @@ public interface PoListService {
 
 	public ArrayList<PoListInfoDTO> selectAllPoList(String userName) throws Exception;
 	public ArrayList<PoListInfoDTO> selectSearchPoList(PoListSearchDTO poListSearchDTO) throws Exception;
+	public void createPoList(PoListInfoDTO poListInfoDTO) throws Exception;
+	public void updatePoList(PoListInfoDTO poListInfoDTO) throws Exception;
+
+	
 }

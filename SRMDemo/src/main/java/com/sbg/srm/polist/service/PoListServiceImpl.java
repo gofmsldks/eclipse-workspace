@@ -26,6 +26,19 @@ public class PoListServiceImpl implements PoListService {
 	public ArrayList<PoListInfoDTO> selectSearchPoList(PoListSearchDTO poListSearchDTO) throws Exception {
 		return (ArrayList<PoListInfoDTO>) poListDao.selectSearchPoList(poListSearchDTO);
 	}
+
+	@Override
+	public void createPoList(PoListInfoDTO poListInfoDTO) throws Exception {
+		poListDao.createPoList(poListInfoDTO);
+	}
+
+	@Override
+	public void updatePoList(PoListInfoDTO poListInfoDTO) throws Exception {
+		poListDao.updatePoList(poListInfoDTO);
+		
+	}
+
+
 	
 
 

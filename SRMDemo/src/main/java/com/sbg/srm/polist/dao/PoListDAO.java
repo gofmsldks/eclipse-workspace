@@ -9,5 +9,7 @@ public interface PoListDAO {
 
 	public List<PoListInfoDTO> selectAllPoList(String userName) throws Exception;
 	public List<PoListInfoDTO> selectSearchPoList(PoListSearchDTO poListSearchDTO) throws Exception;
+	public void createPoList(PoListInfoDTO poListInfoDTO) throws Exception;
+	public void updatePoList(PoListInfoDTO poListInfoDTO) throws Exception;
 
 }

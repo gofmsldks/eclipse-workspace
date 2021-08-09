@@ -29,4 +29,16 @@ public class PoListDAOImpl implements PoListDAO {
 		return sqlSession.selectList(Namespace + ".selectSearchPoList", poListSearchDTO);
 	}
 
+	@Override
+	public void createPoList(PoListInfoDTO poListInfoDTO) throws Exception {
+		sqlSession.insert(Namespace + ".createPoList", poListInfoDTO);
+	}
+
+	@Override
+	public void updatePoList(PoListInfoDTO poListInfoDTO) throws Exception {
+		sqlSession.update(Namespace + ".updatePoList", poListInfoDTO);
+
+		
+	}
+
 }

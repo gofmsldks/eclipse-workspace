@@ -84,8 +84,8 @@
 			             orderable: false,
 			             className: 'dt-body-center',
 			             render: function (data, type, full, meta){
-			                 return '<button class="btn btn-info" type="button" name = "edit_btn" value = "'+ $('<div/>').text(data).html() +'">' + 'EDIT' + '</button>'
-			                 		+ '<button class="btn btn-danger" type="button" name = "delete_btn" value = "'+ $('<div/>').text(data).html() +'">' + 'DELETE' + '</button>';
+			                 return '<button class="btn btn-info" type="button" data-toggle="modal" data-target="#edit_modal" name = "edit_btn" value = "'+ $('<div/>').text(data).html() +'">' + 'EDIT' + '</button>'
+			                 		+ '<button class="btn btn-danger" type="button" data-toggle="modal" data-target="#delete_modal" name = "delete_btn" value = "'+ $('<div/>').text(data).html() +'">' + 'DELETE' + '</button>';
 			             }
 			          }
 		          
@@ -576,7 +576,7 @@
                                 <div class="card-body">
 									<!--  발주리스트 내용 -->
 									
-									<button class="btn btn-primary" type="button" name = "edit_btn" >CREATE NEW RECORD</button>
+									<button class="btn btn-primary" type="button" id = "create_btnID" name = "create_btn" data-toggle="modal" data-target="#create_modal">CREATE NEW RECORD</button>
 									
 									<table id="PoTable" class="display nowrap dataTable dtr-inline collapsed"
 										style="width: 100%;" role="grid" aria-describedby="example_info">
@@ -765,16 +765,178 @@
             </div>
         </div>
     </div>
+    
+    
+    <!-- CREATE Modal-->
+    <div class="modal fade" id="create_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="create_modal_label">새로운 정보를 입력해주세요.</h5>
+                    <button class="close" id = "modal_close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+	                <div>
+	                        <div class="form-group">
+	                            <input type="text" class="form-control form-control-user"
+	                                   id="po_numberID" aria-describedby="IDHelp"
+	                                       placeholder="Enter Po Number..." name = "po_number_create_modal">
+	                        </div>
+	                        <div class="form-group">
+	                            <input type="text" class="form-control form-control-user"
+	                                   id="sendID" aria-describedby="IDHelp"
+	                                       placeholder="Enter send..." name = "send_create_modal">
+	                        </div>
+	                         <div class="form-group">
+	                            <input type="text" class="form-control form-control-user"
+	                                   id="receiveID" aria-describedby="IDHelp"
+	                                       placeholder="Enter receive..." name = "receive_create_modal">
+	                        </div>
+	                        
+	                       	 <!--  모달 데이트 피커  -->
+		                     <div>
+		                        <div class="form-group">
+		                         
+		                          <div class="input-group date" id="datetimepicker_create_modal1" data-target-input="nearest">
+		                           <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker_create_modal1" value="" name = "start_date_create_modal" placeholder = "YYYY-MM-DD">
+		                            <div class="input-group-append" data-target="#datetimepicker_create_modal1" data-toggle="datetimepicker">
+		                             <div class="input-group-text"><i class="fa fa-calendar"></i>
+		                               </div>
+		                              </div>
+		                             </div>
+		                          </div>
+		                      </div>
+                         
+                         <div>
+                         
+                           <div class="form-group">
+                            
+                              <div class="input-group date" id="datetimepicker_create_modal2" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker_create_modal2" value="" name = "end_date_create_modal" placeholder = "YYYY-MM-DD">
+                                     <div class="input-group-append" data-target="#datetimepicker_create_modal2" data-toggle="datetimepicker">
+                                     <div class="input-group-text"><i class="fa fa-calendar"></i>
+                                 </div>
+                              </div>
+                             
+                           </div>
+                          </div>
+                        </div>
+                        
+	                        <div class="form-group">
+	                            <input type="text" class="form-control form-control-user"
+	                                   id="priceID" aria-describedby="IDHelp"
+	                                       placeholder="Enter price..." name = "price_create_modal">
+	                        </div>
+	                        <div class="form-group">
+	                            <input type="text" class="form-control form-control-user"
+	                                   id="user_nameID" aria-describedby="IDHelp"
+	                                       placeholder="Enter user name..." name = "user_name_create_modal" value = "<%=memberName %>">
+	                        </div>
+	                </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary" id = "modalSubmitButton" type="button">Submit</button>
+                 
+                </div>
+            </div>
+        </div>
+    </div>
 
 
+ <!-- EDIT Modal-->
+    <div class="modal fade" id="edit_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="edit_modal_label">수정사항을 입력해주세요.</h5>
+                    <button class="close" id = "modal_edit_close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+	                <div>
+	                        <div class="form-group">
+	                            <input type="text" class="form-control form-control-user"
+	                                   id="po_number_editID" aria-describedby="IDHelp"
+	                                       placeholder="Enter Po Number..." value = "" name = "po_number_edit_modal" disabled>
+	                        </div>
+	                        <div class="form-group">
+	                            <input type="text" class="form-control form-control-user"
+	                                   id="send_editID" aria-describedby="IDHelp"
+	                                       placeholder="Enter send..." value = "" name = "send_edit_modal">
+	                        </div>
+	                         <div class="form-group">
+	                            <input type="text" class="form-control form-control-user"
+	                                   id="receive_editID" aria-describedby="IDHelp"
+	                                       placeholder="Enter receive..." value = "" name = "receive_edit_modal">
+	                        </div>
+	                        
+	                       	 <!--  모달 데이트 피커  -->
+		                     <div>
+		                        <div class="form-group">
+		                         
+		                          <div class="input-group date" id="datetimepicker_edit_modal1" data-target-input="nearest">
+		                           <input type="text" class="form-control datetimepicker-input" id = "datetimepicker_edit_modal1ID" data-target="#datetimepicker_edit_modal1" value="" name = "start_date_edit_modal" placeholder = "YYYY-MM-DD">
+		                            <div class="input-group-append" data-target="#datetimepicker_edit_modal1" data-toggle="datetimepicker">
+		                             <div class="input-group-text"><i class="fa fa-calendar"></i>
+		                               </div>
+		                              </div>
+		                             </div>
+		                          </div>
+		                      </div>
+                         
+                         <div>
+                         
+                           <div class="form-group">
+                            
+                              <div class="input-group date" id="datetimepicker_edit_modal2" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker_edit_modal2" id = "datetimepicker_edit_modal2ID" value="" name = "end_date_edit_modal" placeholder = "YYYY-MM-DD">
+                                     <div class="input-group-append" data-target="#datetimepicker_edit_modal2" data-toggle="datetimepicker">
+                                     <div class="input-group-text"><i class="fa fa-calendar"></i>
+                                 </div>
+                              </div>
+                             
+                           </div>
+                          </div>
+                        </div>
+                        
+	                        <div class="form-group">
+	                            <input type="text" class="form-control form-control-user"
+	                                   id="price_editID" aria-describedby="IDHelp"
+	                                       placeholder="Enter price..." value = "" name = "price_edit_modal">
+	                        </div>
+	                        <div class="form-group">
+	                            <input type="text" class="form-control form-control-user"
+	                                   id="user_name_editID" aria-describedby="IDHelp"
+	                                       placeholder="Enter user name..." value = "" name = "user_name_edit_modal" value = "<%=memberName %>">
+	                        </div>
+	                </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary" id = "modalEditButton" type="button">EDIT</button>
+                 
+                </div>
+            </div>
+        </div>
+    </div>
 	<!-- 데이트피커 함수 포멧 설정, 최소최대 날짜 설정-->
 	<script>
 		$(function () {
 			console.log("데이트타임피커 설정 함수 동작...");
+			
 			$('#datetimepicker1').datetimepicker({ format: 'YYYY-MM-DD'});
 			$('#datetimepicker2').datetimepicker({ format: 'YYYY-MM-DD', useCurrent: false });
+			
 			$("#datetimepicker1").on("change.datetimepicker", function (e) {
-				$('#datetimepicker2').datetimepicker('minDate', e.date); });
+				$('#datetimepicker2').datetimepicker('minDate', e.date);
+				});
+			
 			$("#datetimepicker2").on("change.datetimepicker", function (e) {
 				$('#datetimepicker1').datetimepicker('maxDate', e.date);
 				});
@@ -783,9 +945,65 @@
 	<!-- 데이트피커 함수 포멧 설정, 최소최대 날짜 설정 끝-->
 	
 	
+	
+	<!-- 데이트피커 create 모달 함수 포멧 설정, 최소최대 날짜 설정, modal에서 데이트 피커가 생성되지 않는 문제 show.bs.modal이 해결-->
+	<script>
+	$(function() {
+				$('#datetimepicker_create_modal1').datetimepicker({ format: 'YYYY-MM-DD'});
+				$('#datetimepicker_create_modal2').datetimepicker({ format: 'YYYY-MM-DD', useCurrent: false });
+	
+				$("#datetimepicker_create_modal1").on("change.datetimepicker", function (e) {
+					$('#datetimepicker_create_modal2').datetimepicker('minDate', e.date);
+				});
+				
+				$("#datetimepicker_create_modal2").on("change.datetimepicker", function (e) {
+					$('#datetimepicker_create_modal1').datetimepicker('maxDate', e.date);
+				});
+				
+				$("#datetimepicker_create_modal1").on("show.bs.modal", function (e) {
+					e.stopPropagation();
+				});
+				$("#datetimepicker_create_modal2").on("show.bs.modal", function (e) {
+					e.stopPropagation();
+				});
+			});
+
+	
+	</script>
+	<!-- 데이트피커 모달 함수 포멧 설정, 최소최대 날짜 설정, modal에서 데이트 피커가 생성되지 않는 문제 show.bs.modal이 해결 끝-->
+	
+	
+	
+	<!-- 데이트피커 EDIT 모달 함수 포멧 설정, 최소최대 날짜 설정, modal에서 데이트 피커가 생성되지 않는 문제 show.bs.modal이 해결-->
+	<script>
+	$(function() {
+				$('#datetimepicker_edit_modal1').datetimepicker({ format: 'YYYY-MM-DD'});
+				$('#datetimepicker_edit_modal2').datetimepicker({ format: 'YYYY-MM-DD', useCurrent: false });
+	
+				$("#datetimepicker_edit_modal1").on("change.datetimepicker", function (e) {
+					$('#datetimepicker_edit_modal2').datetimepicker('minDate', e.date);
+				});
+				
+				$("#datetimepicker_edit_modal2").on("change.datetimepicker", function (e) {
+					$('#datetimepicker_edit_modal1').datetimepicker('maxDate', e.date);
+				});
+				
+				$("#datetimepicker_edit_modal1").on("show.bs.modal", function (e) {
+					e.stopPropagation();
+				});
+				$("#datetimepicker_edit_modal2").on("show.bs.modal", function (e) {
+					e.stopPropagation();
+				});
+			});
+
+	
+	</script>
+	<!-- 데이트피커 edit 모달 함수 포멧 설정, 최소최대 날짜 설정, modal에서 데이트 피커가 생성되지 않는 문제 show.bs.modal이 해결 끝-->
+	
+	
 	<script>
 	
-		console.log("검색버튼 부분...");
+		console.log("검색버튼 클릭 부분...");
 		function click_searchAndDate(){
 			
 					var search = $('input[name="search"]').val();
@@ -883,10 +1101,10 @@
 					 			             orderable: false,
 					 			             className: 'dt-body-center',
 					 			             render: function (data, type, full, meta){
-					 			                 return '<button class="btn btn-info" type="button" name = "edit_btn" value = "'+ $('<div/>').text(data).html() +'">' + 'EDIT' + '</button>'
-					 			                 		+ '<button class="btn btn-danger" type="button" name = "delete_btn" value = "'+ $('<div/>').text(data).html() +'">' + 'DELETE' + '</button>';
+					 			                 return '<button class="btn btn-info" type="button" data-toggle="modal" data-target="#edit_modal" name = "edit_btn" value = "'+ $('<div/>').text(data).html() +'">' + 'EDIT' + '</button>'
+					 			                 		+ '<button class="btn btn-danger" type="button" data-toggle="modal" data-target="#delete_modal" name = "delete_btn" value = "'+ $('<div/>').text(data).html() +'">' + 'DELETE' + '</button>';
 					 			             }
-					 			          }
+					 			       
 				       		          }],
 
 				       		          order: [[1, 'asc']]
@@ -896,7 +1114,7 @@
 				              },
 						      error: function(data){
 						    	  alert("REST 오류 발생");
-				              	 	window.location.href="/index";
+				              	 	window.location.href="/detail";
 		
 						      }
 				
@@ -908,6 +1126,10 @@
 		document.getElementById("search_button").addEventListener("click", click_searchAndDate);
 		console.log("검색버튼 클릭...");
 	</script>
+	
+	
+	
+	
 	
 	<script>
 	// Handle click on "Select all" control
@@ -963,6 +1185,8 @@
 
 	<script>
 	// 클릭시 상세 내용
+	//$(document).on('click', '#dt_basic tbody tr', function() {
+    //var outlayId = myDatatable.row( this ).data().outlayId;});
 	
 		$(document).ready(function(){
 			console.log("클릭시 상세내용 함수 동작...")
@@ -973,6 +1197,298 @@
 				$('#PoTable2').html(table.row( this ).data());
 			} );
 		});
+	
+	</script>
+	
+	
+	<script>
+	// Modal Create New Record 시 submit 버튼 눌렀을때 동작
+	
+	function click_modal_create(){
+
+	      var po_number = $('input[name="po_number_create_modal"]').val();
+	      var send = $('input[name="send_create_modal"]').val();
+	      var receive = $('input[name="receive_create_modal"]').val();
+	      var start_date = $('input[name="start_date_create_modal"]').val();
+	      var end_date = $('input[name="end_date_create_modal"]').val();
+	      var price = $('input[name="price_create_modal"]').val();
+	      var user_name = $('input[name="user_name_create_modal"]').val();
+	      
+	      console.log(po_number + send + receive + start_date + end_date + price + user_name);
+	      
+			if (po_number == "" || send == "" || receive == "" || start_date == "" || end_date == "" || price == ""){
+				alert("빈칸을 채워주세요");
+				return false;
+			}
+		     
+		     
+		     var send_data = {"po_number": po_number, "send" : send, "receive" : receive, "start_date" : start_date, "end_date" : end_date, "price" : price, "user_name" : user_name};
+		     
+		     $.ajax({
+		
+		              url: "/poCreate",
+		
+		              type: "POST",
+		
+		              dataType: "json",          // ajax 통신으로 받는 타입
+		
+		              contentType: "application/json",  // ajax 통신으로 보내는 타입
+		
+		              data: JSON.stringify(send_data),
+		
+		              success: function(data){
+		            	  
+		            	  if(data.msg == 'INSERTERROR'){
+		            		  alert("등록오류.");
+		
+		            	  }else if(data.msg == 'EXIST'){
+		            		
+		            		document.getElementById("modal_close").click();
+		            		var table = $("#PoTable").DataTable();
+		              		table.destroy();
+		              		
+		            		alert("등록완료.");
+		            		console.log(data);
+		            		
+		            		$('#PoTable').DataTable({
+		            			
+		            			// 상태 저장
+		        		    	bStateSave: true,
+		        		    	// 표시 건수기능 숨기기
+		        		    	lengthChange: true,
+		        		    	// 검색 기능 숨기기
+		        		    	searching: false,
+		        		    	// 정렬 기능 숨기기
+		        		    	ordering: true,
+		        		    	// 정보 표시 숨기기
+		        		    	info: true,
+		        		    	// 페이징 기능 숨기기
+		        		    	paging: false,
+		        		    	
+		        		    	// 가로 스크롤바를 표시
+		        		    	// 설정 값은 true 또는 false
+		        		    	scrollX: true,
+
+		        		    	// 세로 스크롤바를 표시
+		        		    	// 설정 값은 px단위
+		        		    	scrollY: 400,
+		        		    	
+		   
+		        		    
+		        		    	data: data.poList,
+		        		    	 columns: [
+		        		    		{ data: 'po_number' },
+		        		     		{ data: 'po_number' },
+		        		     		{ data: 'send' },
+		        		          	{ data: 'receive'},
+		        		           	{ data: 'start_date'},
+		        		           	{ data: 'end_date'},
+		        		           	{ data: 'price'},
+		        		           	{ data: 'user_name' },
+		        		            { data: 'po_number'}
+		        		           	
+		        		     	],
+		        		     	
+		       		     	 columnDefs: [{
+		       		             targets: 0,
+		       		             searchable: false,
+		       		             orderable: false,
+		       		             className: 'dt-body-center',
+		       		             render: function (data, type, full, meta){
+		       		                 return '<input type="checkbox" name="id[]" value="' + $('<div/>').text(data).html() + '">';
+		       		             }
+		       		     	 },
+		       		             
+		       		         {
+			 			             targets: 8,
+			 			             searchable: false,
+			 			             orderable: false,
+			 			             className: 'dt-body-center',
+			 			             render: function (data, type, full, meta){
+			 			                 return '<button class="btn btn-info" type="button" data-toggle="modal" data-target="#edit_modal" name = "edit_btn" value = "'+ $('<div/>').text(data).html() +'">' + 'EDIT' + '</button>'
+			 			                 		+ '<button class="btn btn-danger" type="button" data-toggle="modal" data-target="#delete_modal" name = "delete_btn" value = "'+ $('<div/>').text(data).html() +'">' + 'DELETE' + '</button>';
+			 			             }
+			 			       
+		       		          }],
+
+		       		          order: [[1, 'asc']]
+		        		    	
+		        	    	});
+		              	  }
+		              },
+				      error: function(data){
+				    	  alert("REST 오류 발생");
+		              	 	window.location.href="/detail";
+
+				      }
+		
+		     });
+		     
+	   
+	
+	}
+	
+	document.getElementById("modalSubmitButton").addEventListener("click", click_modal_create);
+	console.log("모달서브밋버튼 클릭...");
+	
+	</script>
+	
+	<script>
+	// 1. edit 버튼을 눌렀을때 해당 row값 가져와서  modal value에 넣기
+	
+	$(document).on('click', 'button[name="edit_btn"]', function() {
+	 	var po_number = $('#PoTable').DataTable().row( $(this).parents('tr:first') ).data().po_number;
+	 	var send = $('#PoTable').DataTable().row( $(this).parents('tr:first') ).data().send;
+	 	var receive = $('#PoTable').DataTable().row( $(this).parents('tr:first') ).data().receive;
+	 	var start_date = $('#PoTable').DataTable().row( $(this).parents('tr:first') ).data().start_date;
+	 	var end_date = $('#PoTable').DataTable().row( $(this).parents('tr:first') ).data().end_date;
+	 	var price = $('#PoTable').DataTable().row( $(this).parents('tr:first') ).data().price;
+	 	var user_name = $('#PoTable').DataTable().row( $(this).parents('tr:first') ).data().user_name;
+	 	
+		console.log( '모달 에딧 버튼 눌렀을때 row 값 가져오기 '+ po_number +',' + send+',' +  receive+',' + start_date +',' + end_date+',' + price+',' + user_name);
+	 	$('#po_number_editID').val(po_number);
+	 	$('#send_editID').val(send);
+	 	$('#receive_editID').val(receive);
+	 	$('#datetimepicker_edit_modal1ID').val(start_date);
+	 	$('#datetimepicker_edit_modal2ID').val(end_date);
+	 	$('#price_editID').val(price);
+	 	$('#user_name_editID').val(user_name);
+	});
+	
+	</script>
+	
+	
+	<script>
+	// 2. Modal EDIT 시 submit 버튼 눌렀을때 동작
+	
+	function click_modal_edit(){
+     	
+	// 수정된 값 전달
+	      var po_number = $('input[name="po_number_edit_modal"]').val();
+	      var send = $('input[name="send_edit_modal"]').val();
+	      var receive = $('input[name="receive_edit_modal"]').val();
+	      var start_date = $('input[name="start_date_edit_modal"]').val();
+	      var end_date = $('input[name="end_date_edit_modal"]').val();
+	      var price = $('input[name="price_edit_modal"]').val();
+	      var user_name = $('input[name="user_name_edit_modal"]').val();
+	      
+	      console.log(po_number + send + receive + start_date + end_date + price + user_name);
+	      
+			if (po_number == "" || send == "" || receive == "" || start_date == "" || end_date == "" || price == ""){
+				alert("빈칸을 채워주세요");
+				return false;
+			}
+		     
+		     
+		     var send_data = {"po_number": po_number, "send" : send, "receive" : receive, "start_date" : start_date, "end_date" : end_date, "price" : price, "user_name" : user_name};
+		     
+		     $.ajax({
+		
+		              url: "/poUpdate",
+		
+		              type: "PATCH",
+		
+		              dataType: "json",          // ajax 통신으로 받는 타입
+		
+		              contentType: "application/json",  // ajax 통신으로 보내는 타입
+		
+		              data: JSON.stringify(send_data),
+		
+		              success: function(data){
+		            	  
+		            	  if(data.msg == 'EDITERROR'){
+		            		  alert("등록오류.");
+		
+		            	  }else if(data.msg == 'EXIST'){
+			            	document.getElementById("modal_edit_close").click();
+		            		
+		            		var table = $("#PoTable").DataTable();
+		              		table.destroy();
+		              		
+		            		alert("수정완료.");
+		            		console.log(data);
+		            		
+
+		            		$('#PoTable').DataTable({
+		            			
+		            			// 상태 저장
+		        		    	bStateSave: true,
+		        		    	// 표시 건수기능 숨기기
+		        		    	lengthChange: true,
+		        		    	// 검색 기능 숨기기
+		        		    	searching: false,
+		        		    	// 정렬 기능 숨기기
+		        		    	ordering: true,
+		        		    	// 정보 표시 숨기기
+		        		    	info: true,
+		        		    	// 페이징 기능 숨기기
+		        		    	paging: false,
+		        		    	
+		        		    	// 가로 스크롤바를 표시
+		        		    	// 설정 값은 true 또는 false
+		        		    	scrollX: true,
+
+		        		    	// 세로 스크롤바를 표시
+		        		    	// 설정 값은 px단위
+		        		    	scrollY: 400,
+		        		    	
+		   
+		        		    
+		        		    	data: data.poList,
+		        		    	 columns: [
+		        		    		{ data: 'po_number' },
+		        		     		{ data: 'po_number' },
+		        		     		{ data: 'send' },
+		        		          	{ data: 'receive'},
+		        		           	{ data: 'start_date'},
+		        		           	{ data: 'end_date'},
+		        		           	{ data: 'price'},
+		        		           	{ data: 'user_name' },
+		        		            { data: 'po_number'}
+		        		           	
+		        		     	],
+		        		     	
+		       		     	 columnDefs: [{
+		       		             targets: 0,
+		       		             searchable: false,
+		       		             orderable: false,
+		       		             className: 'dt-body-center',
+		       		             render: function (data, type, full, meta){
+		       		                 return '<input type="checkbox" name="id[]" value="' + $('<div/>').text(data).html() + '">';
+		       		             }
+		       		     	 },
+		       		             
+		       		         {
+			 			             targets: 8,
+			 			             searchable: false,
+			 			             orderable: false,
+			 			             className: 'dt-body-center',
+			 			             render: function (data, type, full, meta){
+			 			                 return '<button class="btn btn-info" type="button" data-toggle="modal" data-target="#edit_modal" name = "edit_btn" value = "'+ $('<div/>').text(data).html() +'">' + 'EDIT' + '</button>'
+			 			                 		+ '<button class="btn btn-danger" type="button" data-toggle="modal" data-target="#delete_modal" name = "delete_btn" value = "'+ $('<div/>').text(data).html() +'">' + 'DELETE' + '</button>';
+			 			             }
+			 			       
+		       		          }],
+
+		       		          order: [[1, 'asc']]
+		        		    	
+		        	    	});
+		              	  }
+		              },
+				      error: function(data){
+				    	  alert("REST 오류 발생");
+		              	 	window.location.href="/detail";
+
+				      }
+		
+		     });
+		     
+	   
+	
+	}
+	
+	document.getElementById("modalEditButton").addEventListener("click", click_modal_edit);
+	console.log("모달에딧버튼 클릭...");
 	
 	</script>
 	

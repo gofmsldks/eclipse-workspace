@@ -11,5 +11,6 @@ public interface PoListDAO {
 	public List<PoListInfoDTO> selectSearchPoList(PoListSearchDTO poListSearchDTO) throws Exception;
 	public void createPoList(PoListInfoDTO poListInfoDTO) throws Exception;
 	public void updatePoList(PoListInfoDTO poListInfoDTO) throws Exception;
+	public void deletePoList(PoListInfoDTO poListInfoDTO) throws Exception;
 
 }

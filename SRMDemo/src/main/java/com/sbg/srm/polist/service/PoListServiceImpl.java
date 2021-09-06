@@ -38,6 +38,12 @@ public class PoListServiceImpl implements PoListService {
 		
 	}
 
+	@Override
+	public void deletePoList(PoListInfoDTO poListInfoDTO) throws Exception {
+		poListDao.deletePoList(poListInfoDTO);
+		
+	}
+
 
 	
 

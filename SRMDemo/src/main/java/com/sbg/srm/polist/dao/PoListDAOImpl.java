@@ -41,4 +41,9 @@ public class PoListDAOImpl implements PoListDAO {
 		
 	}
 
+	@Override
+	public void deletePoList(PoListInfoDTO poListInfoDTO) throws Exception {
+		sqlSession.delete(Namespace + ".deletePoList", poListInfoDTO);		
+	}
+
 }

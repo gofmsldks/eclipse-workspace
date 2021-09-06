@@ -67,5 +67,10 @@
 		WHERE po_number = #{po_number}
 	</update>
 	
-
+	<delete id = "deletePoList">
+		DELETE 
+		FROM test_list
+		WHERE
+		po_number = #{po_number}
+	</delete>
 </mapper>

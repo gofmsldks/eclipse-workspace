@@ -925,6 +925,31 @@
             </div>
         </div>
     </div>
+    
+    
+    
+     <!-- DELETE Modal-->
+    <div class="modal fade" id="delete_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Delete?</h5>
+                    <button class="close" type="button" id = "delete_modal_close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">삭제후 복구를 원한다면 고객센터로 문의 바랍니다.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-danger" id = "modalDeleteButton" type="button">DELETE</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
 	<!-- 데이트피커 함수 포멧 설정, 최소최대 날짜 설정-->
 	<script>
 		$(function () {
@@ -1492,6 +1517,150 @@
 	
 	</script>
 	
+	
+	
+	<!-- DELETE 버튼눌렀을때 동작-->
+	<script>
+	
+	let po_number;
+	let send;
+	let receive;
+	let start_date;
+	let end_date;
+	let price;
+	let user_name;
+	
+	// DELETE시  Modal 창에 delete 버튼 눌렀을때 동작
+		$(document).on('click', 'button[name="delete_btn"]', function() {
+	 	po_number = $('#PoTable').DataTable().row( $(this).parents('tr:first') ).data().po_number;
+	 	send = $('#PoTable').DataTable().row( $(this).parents('tr:first') ).data().send;
+	 	receive = $('#PoTable').DataTable().row( $(this).parents('tr:first') ).data().receive;
+	 	start_date = $('#PoTable').DataTable().row( $(this).parents('tr:first') ).data().start_date;
+	 	end_date = $('#PoTable').DataTable().row( $(this).parents('tr:first') ).data().end_date;
+	 	price = $('#PoTable').DataTable().row( $(this).parents('tr:first') ).data().price;
+	 	user_name = $('#PoTable').DataTable().row( $(this).parents('tr:first') ).data().user_name;
+	 	
+		console.log( '모달 딜렉트 버튼 눌렀을때 row 값 가져오기 '+ po_number +',' + send+',' +  receive+',' + start_date +',' + end_date+',' + price+',' + user_name);
+	});
+	
+	
+	function click_modal_delete(){
+
+	      
+	      console.log(po_number + send + receive + start_date + end_date + price + user_name);
+	      
+		  console.log(`물류 : ${send}`);
+		     
+		     var send_data = {"po_number": po_number, "send" : send, "receive" : receive, "start_date" : start_date, "end_date" : end_date, "price" : price, "user_name" : user_name};
+		     
+		     $.ajax({
+		
+		              url: "/poDelete",
+		
+		              type: "DELETE",
+		
+		              dataType: "json",          // ajax 통신으로 받는 타입
+		
+		              contentType: "application/json",  // ajax 통신으로 보내는 타입
+		
+		              data: JSON.stringify(send_data),
+		
+		              success: function(data){
+		            	  
+		            	  if(data.msg == 'DELETEERROR'){
+		            		  alert("삭제오류.");
+		
+		            	  }else if(data.msg == 'DELETESUCCESS'){
+		            		
+		            		document.getElementById("delete_modal_close").click();
+		            		var table = $("#PoTable").DataTable();
+		              		table.destroy();
+		              		
+		            		alert("삭제완료.");
+		            		console.log(data);
+		            		
+		            		$('#PoTable').DataTable({
+		            			
+		            			// 상태 저장
+		        		    	bStateSave: true,
+		        		    	// 표시 건수기능 숨기기
+		        		    	lengthChange: true,
+		        		    	// 검색 기능 숨기기
+		        		    	searching: false,
+		        		    	// 정렬 기능 숨기기
+		        		    	ordering: true,
+		        		    	// 정보 표시 숨기기
+		        		    	info: true,
+		        		    	// 페이징 기능 숨기기
+		        		    	paging: false,
+		        		    	
+		        		    	// 가로 스크롤바를 표시
+		        		    	// 설정 값은 true 또는 false
+		        		    	scrollX: true,
+
+		        		    	// 세로 스크롤바를 표시
+		        		    	// 설정 값은 px단위
+		        		    	scrollY: 400,
+		        		    	
+		   
+		        		    
+		        		    	data: data.poList,
+		        		    	 columns: [
+		        		    		{ data: 'po_number' },
+		        		     		{ data: 'po_number' },
+		        		     		{ data: 'send' },
+		        		          	{ data: 'receive'},
+		        		           	{ data: 'start_date'},
+		        		           	{ data: 'end_date'},
+		        		           	{ data: 'price'},
+		        		           	{ data: 'user_name' },
+		        		            { data: 'po_number'}
+		        		           	
+		        		     	],
+		        		     	
+		       		     	 columnDefs: [{
+		       		             targets: 0,
+		       		             searchable: false,
+		       		             orderable: false,
+		       		             className: 'dt-body-center',
+		       		             render: function (data, type, full, meta){
+		       		                 return '<input type="checkbox" name="id[]" value="' + $('<div/>').text(data).html() + '">';
+		       		             }
+		       		     	 },
+		       		             
+		       		         {
+			 			             targets: 8,
+			 			             searchable: false,
+			 			             orderable: false,
+			 			             className: 'dt-body-center',
+			 			             render: function (data, type, full, meta){
+			 			                 return '<button class="btn btn-info" type="button" data-toggle="modal" data-target="#edit_modal" name = "edit_btn" value = "'+ $('<div/>').text(data).html() +'">' + 'EDIT' + '</button>'
+			 			                 		+ '<button class="btn btn-danger" type="button" data-toggle="modal" data-target="#delete_modal" name = "delete_btn" value = "'+ $('<div/>').text(data).html() +'">' + 'DELETE' + '</button>';
+			 			             }
+			 			       
+		       		          }],
+
+		       		          order: [[1, 'asc']]
+		        		    	
+		        	    	});
+		              	  }
+		              },
+				      error: function(data){
+				    	  alert("REST 오류 발생");
+		              	 	window.location.href="/detail";
+
+				      }
+		
+		     });
+		     
+	   
+	
+	}
+	
+	document.getElementById("modalDeleteButton").addEventListener("click", click_modal_delete);
+	console.log("모달DELETE밋버튼 클릭...");
+	
+	</script>
 
 	 
 

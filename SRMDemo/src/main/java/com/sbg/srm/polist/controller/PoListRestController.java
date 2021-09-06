@@ -107,9 +107,35 @@ public class PoListRestController {
 	
 	
 	//DELETE
-	@RequestMapping(value = "/poDelete/{idx}", method = RequestMethod.DELETE)
-	public Map<String, Object> deletePoList(@PathVariable("idx") long idx, @RequestBody PoListInfoDTO poListInfoDTO, HttpSession httpSession, HttpServletRequest request, Model model){
+	@RequestMapping(value = "/poDelete", method = RequestMethod.DELETE)
+	public Map<String, Object> deletePoList(@RequestBody PoListInfoDTO poListInfoDTO, HttpSession httpSession, HttpServletRequest request, Model model){
 		
-		return null;
+		logger.info("DELETE Po...");
+		Map<String, Object> data = new HashMap<String, Object>();
+
+		try {
+			poListService.deletePoList(poListInfoDTO);
+			
+		}catch(DataAccessException e){
+			data.put("msg", "DELETEERROR");
+
+		}catch(Exception e) {
+			e.printStackTrace();
+
+		}	
+	
+	
+		logger.info("DELETE ÈÄ  POlist ¹ÝÈ¯...");
+
+		ArrayList<PoListInfoDTO> poSearchList;
+		try {
+			poSearchList = poListService.selectAllPoList(poListInfoDTO.getUser_name());
+			data.put("msg", "DELETESUCCESS");
+			data.put("poList", poSearchList);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return data;
 	}
 }
